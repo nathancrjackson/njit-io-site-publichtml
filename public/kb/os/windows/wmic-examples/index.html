@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>WMIC examples | NJIT.io</title>
+<meta name="description" content="Some basic commands for using WMIC to interact with Windows Management Instrumentation.">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/kb/os/windows/wmic-examples/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="WMIC examples">
+  <meta property="og:description" content="Some basic commands for using WMIC to interact with Windows Management Instrumentation.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="kb">
+    <meta property="article:published_time" content="2020-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Os">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Wmi">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="WMIC examples">
+  <meta name="twitter:description" content="Some basic commands for using WMIC to interact with Windows Management Instrumentation.">
+
+
+  <meta itemprop="name" content="WMIC examples">
+  <meta itemprop="description" content="Some basic commands for using WMIC to interact with Windows Management Instrumentation.">
+  <meta itemprop="datePublished" content="2020-09-20T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-09-20T00:00:00+00:00">
+  <meta itemprop="wordCount" content="263">
+  <meta itemprop="keywords" content="Os,Windows,Wmi">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">WMIC examples</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+<div id="notificationdiv" class="gd-s12">
+	<div class="infonotification">
+		<h4 class="notificationheading">This site requires Javascript</h4>
+		<p class="notificationtext">You are seeing this if you have Javascript disabled.</p>
+	</div>
+</div>
+
+			<div class="gd-s12">
+<p>WMIC is a command-line utility for interacting with Windows Management Instrumentation.</p>
+<p>Get list all of aliases</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic alias list brief
+</span></span></code></pre></div><p>Get BIOS serial number</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic bios get serialnumber
+</span></span></code></pre></div><p>Get OS name</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic os get name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic PATH Win32_OperatingSystem GET name
+</span></span></code></pre></div><p>Get OS Install Date</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic PATH Win32_ComputerSystem GET InstallDate
+</span></span></code></pre></div><p>Get CPU name</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic cpu get name
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic PATH Win32_Processor get Name
+</span></span></code></pre></div><p>Get TPM information</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic /namespace:\\root\cimv2\security\microsofttpm path win32_tpm get ManufacturerIdTxt,ManufacturerVersion,SpecVersion
+</span></span></code></pre></div><p>Get GPU description</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic PATH win32_videocontroller GET description
+</span></span></code></pre></div><p>Get HDD info</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic diskdrive get model,name,size
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path win32_LogicalDisk get model,name,size
+</span></span></code></pre></div><p>Get network devices and details</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic nic get name,index,netenabled,physicaladapter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path Win32_NetworkAdapter get Name,MACAddress,NetConnectionStatus,NetEnabled,PhysicalAdapter
+</span></span></code></pre></div><p>Enable/disable NIC based on index</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path win32_networkadapter where index={:Integer:} call enable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path win32_networkadapter where index={:Integer:} call disable
+</span></span></code></pre></div><p>Enable/disable all physical NICs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path win32_networkadapter where physicaladapter=TRUE call enable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path win32_networkadapter where physicaladapter=TRUE call disable
+</span></span></code></pre></div><p>Get list of printers</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic printer list status
+</span></span></code></pre></div><p>Get list of users and SIDs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic useraccount get name,sid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path Win32_UserAccount get name,sid
+</span></span></code></pre></div><p>Set user passwords to not expire</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path Win32_UserAccount set PasswordExpires=False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path Win32_UserAccount where &#34;name=&#39;{:Username:}&#39;&#34; set PasswordExpires=False
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic path Win32_UserAccount where &#34;LocalAccount=TRUE&#34; set PasswordExpires=False
+</span></span></code></pre></div><p>Get list of installed applications</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic product get name,vendor,version
+</span></span></code></pre></div><p>Uninstall an application</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic product where &#34;name=&#39;{:SoftwareName:}&#39;&#34; call uninstall
+</span></span></code></pre></div><p>View all services</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path Win32_Service get DisplayName,Name,Status,StartMode,Started
+</span></span></code></pre></div><p>Search for service</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path Win32_Service where &#34;name=&#39;{:ServiceName:}&#39;&#34; get DisplayName,Name,Status,StartMode,Started
+</span></span></code></pre></div><p>Search for all automatic services which are not currently started</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic path Win32_Service where (Started=FALSE and StartMode=&#39;Auto&#39;) get DisplayName,Name,Status,StartMode,Started
+</span></span></code></pre></div><p>Run query against another machine (RPC server must be available)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wmic /NODE:&#34;{:MachineName:}&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic /NODE:&#34;{:MachineName:}&#34; /USER:&#34;{:Domain:}\{:Username:}&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wmic /NODE:&#34;{:MachineName:}&#34; /USER:&#34;{:Domain:}\{:Username:}&#34; /PASSWORD:&#34;{:Password:}&#34;
+</span></span></code></pre></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/os/" class="no-caps">#Os</a>&nbsp;<a href="/tags/windows/" class="no-caps">#Windows</a>&nbsp;<a href="/tags/wmi/" class="no-caps">#Wmi</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  njt.dom.getElementById('notificationdiv').style.display = "none";
+</script>
+  
+    
+    <script defer src="/js/password-generator.min.c7ab85546ec8590e48f60b264ec607d421406187378fae980cbed82d68f73bd6.js"></script>
+    
+  
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	let password = app.snips.getPasswordForPosts();
+
+	app.snips.addVariable("machinename", { "i":1, "h":"Machine your connecting to", "p":"Placeholder", "c":"gd-m6" });
+	app.snips.addVariable("domain", { "i":1, "h":"Windows Domain", "p":"SupportInc", "c":"gd-m6" });
+	app.snips.addVariable("username", { "i":1, "h":"Username", "p":"NetworkAdmin", "c":"gd-m6" });
+	app.snips.addVariable("password", { "i":1, "h":"Password", "p":password, "c":"gd-m6" });
+	app.snips.addVariable("softwarename", { "i":1, "h":"Software name", "p":"Apple iTunes", "c":"gd-m6" });
+	app.snips.addVariable("servicename", { "i":1, "h":"Service name", "p":"Winmgmt", "c":"gd-m6" });
+	app.snips.addVariable("integer", { "i":1, "h":"NIC index", "p":"1", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

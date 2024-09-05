@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vmware on NJIT.io</title>
+    <link>https://njit.io/tags/vmware/</link>
+    <description>Recent content in Vmware on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/tags/vmware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mounting VMDK files (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMDK file in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>Mounting VMFS volume (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</link>
+      <pubDate>Sat, 26 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMFS volume in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>VMware ESXi command-line cheat-sheet</title>
+      <link>https://njit.io/kb/virtualisation/vmware/esxi-cli-cheat-sheet/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/esxi-cli-cheat-sheet/</guid>
+      <description>Cheat-sheet for useful commands you can run via the ESXi shell.</description>
+    </item>
+  </channel>
+</rss>

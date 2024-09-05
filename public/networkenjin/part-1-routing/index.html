@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>NetworkEnjin – Part 1: Routing with NFTables | NJIT.io</title>
+<meta name="description" content="How to install and configure basic routing in Linux using NFTables">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/networkenjin/part-1-routing/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="NetworkEnjin – Part 1: Routing with NFTables">
+  <meta property="og:description" content="How to install and configure basic routing in Linux using NFTables">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="projects">
+    <meta property="article:tag" content="Networkenjin">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Routing">
+    <meta property="article:tag" content="Nftables">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NetworkEnjin – Part 1: Routing with NFTables">
+  <meta name="twitter:description" content="How to install and configure basic routing in Linux using NFTables">
+
+
+  <meta itemprop="name" content="NetworkEnjin – Part 1: Routing with NFTables">
+  <meta itemprop="description" content="How to install and configure basic routing in Linux using NFTables">
+  <meta itemprop="wordCount" content="1420">
+  <meta itemprop="keywords" content="Networkenjin,Linux,Routing,Nftables">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">NetworkEnjin – Part 1: Routing with NFTables</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<p>To configure routing using NFTables we need to do the following:</p>
+<ul>
+<li>Enable packet forwarding</li>
+<li>Install, configure and enable NFTables</li>
+<li>Disable IPTables</li>
+</ul>
+<p>The configuring NFTables part can get complex quickly (I have included a base config for you to start with) but the rest of very straight forward.</p>
+<h2 id="enabling-packet-forwarding">Enabling packet forwarding</h2>
+<p>By default Ubuntu (like most Linux distributions) doesn’t enable packet forwarding out of the box so you’ll need to…</p>
+<p>Create /etc/sysctl.d/90-nwenjin.conf with the following contents</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>net.ipv4.ip_forward = 1
+</span></span></code></pre></div><p>Kick-in the change</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sysctl --system
+</span></span></code></pre></div><p>You can test that it has applied using this command</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sysctl net.ipv4.ip_forward
+</span></span></code></pre></div><h2 id="replacing-iptables-with-nftables">Replacing IPTables with NFTables</h2>
+<p>Install NFTables</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install nftables
+</span></span></code></pre></div><p>Populate /etc/nftables.conf with our base config. I’ll give some guidance for how to add to it later but for now make sure to populate the 2 variables with the right values and use this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/usr/sbin/nft -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flush ruleset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>define WAN_INTERFACE = {:WANInterface:}
+</span></span><span style="display:flex;"><span>define LAN_SUBNET = {:LANSubnet:}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table inet filter {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain outgoing {
+</span></span><span style="display:flex;"><span>		type filter hook output priority 100
+</span></span><span style="display:flex;"><span>		policy accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	chain incoming {
+</span></span><span style="display:flex;"><span>		type filter hook input priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ct state established,related accept
+</span></span><span style="display:flex;"><span>		iif lo accept
+</span></span><span style="display:flex;"><span>		meta l4proto {icmp, icmpv6} accept
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET tcp dport 22 accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain forwarding {
+</span></span><span style="display:flex;"><span>		type filter hook forward priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET oifname $WAN_INTERFACE accept
+</span></span><span style="display:flex;"><span>		iifname $WAN_INTERFACE ip daddr $LAN_SUBNET ct state related,established accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table nat {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain prerouting {
+</span></span><span style="display:flex;"><span>		type nat hook prerouting priority 0
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain postrouting {
+</span></span><span style="display:flex;"><span>		type nat hook postrouting priority 0
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Enable and start NFTables</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl enable nftables.service
+</span></span><span style="display:flex;"><span>systemctl start nftables.service
+</span></span></code></pre></div><p>Create /etc/modprobe.d/nwenjin.conf with the following contents</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>blacklist iptable_filter
+</span></span><span style="display:flex;"><span>blacklist ip_tables
+</span></span></code></pre></div><p>Restart the machine for IPTables to be disabled and NFTables to be enabled.</p>
+<h2 id="networking-theory">Networking theory</h2>
+<p>Before you expand on the above base config to create yourself a simple firewall router, you’ll first need to understand some fundamentals of how our firewall will work.</p>
+<p>In Linux, IPTables and NFTables sit on top of Netfilter which is the kernel’s networking hooks. It’s a bit over-simplified but Netfilter’s packet flow looks something like this:</p>
+<p><img src="netfilter-oversimplified.png" alt="Oversimplified diagram of how data flows through Netfilter"></p>
+<p>Groups of hooks are referred to as tables. For the purpose of our router we have two tables. A filter table for accepting or dropping traffic and a NAT table which changes the source or destination of traffic as it moves in or out of the router.</p>
+<p>Now you do not put rules directly into a hook, rules are grouped together in a chain and that chain is associated with a hook. If you like, a chain can have only 1 rule.</p>
+<p>The filter table in our base config has three chains:</p>
+<ul>
+<li>Outgoing: Associated with the output hook to hold the rules for packets going from our router to another device. By default this chain will accept packets if another rule does not match.</li>
+<li>Incoming: Associated with the input hook to hold the rules for packets hitting our router from another device. By default this chain will drop packets if another rule does not match.</li>
+<li>Forwarding: Associated with the forward hook to hold the rules for packets being passed by our router from one device to another device. By default this chain will drop packets if another rule does not match.</li>
+</ul>
+<p>The NAT table in our base config has two chains:</p>
+<ul>
+<li>Pre-routing: Associated with the prerouting hook to hold the rules for doing a network translation before they go through our filter table.</li>
+<li>Post-routing: Associated with the postrouting hook to hold the rules for doing a network translation after they have gone through our filter table.</li>
+</ul>
+<p>It is important to note that you need rules for traffic to go in both directions. Just because you let traffic go one-way that does not guarantee that the response is allowed back the other way. As an example the base config has the following line in the incoming chain</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ct state established,related accept
+</span></span></code></pre></div><p>Because the input table drops traffic by default this line allows any responses to Outgoing traffic to be accepted upon their return.</p>
+<p>Now to summarise (in reverse order to the above), all the components involved and how they connect to each other goes as follows:</p>
+<ul>
+<li>We have our firewall rules</li>
+<li>Which are in chains</li>
+<li>The chains need to have some relationship with a hook (i.e input, output, forward)</li>
+<li>Those hooks make up our tables</li>
+</ul>
+<h2 id="web-server-example">Web server example</h2>
+<p>You have a web server that is behind a router which is your firewall between the internet and your local/private network. The router has the following NFTable config:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/usr/sbin/nft -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flush ruleset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>define WAN_INTERFACE = {:WANInterface:}
+</span></span><span style="display:flex;"><span>define LAN_SUBNET = {:LANSubnet:}
+</span></span><span style="display:flex;"><span>define WEB_SERVER = {:WebServerPrivateIP:}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table inet filter {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	set WEB_SERVER_PORTS {
+</span></span><span style="display:flex;"><span>		type inet_service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		elements = { 80, 443 }
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain outgoing {
+</span></span><span style="display:flex;"><span>		type filter hook output priority 100
+</span></span><span style="display:flex;"><span>		policy accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	chain incoming {
+</span></span><span style="display:flex;"><span>		type filter hook input priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ct state established,related accept
+</span></span><span style="display:flex;"><span>		iif lo accept
+</span></span><span style="display:flex;"><span>		meta l4proto {icmp, icmpv6} accept
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET tcp dport 22 accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain forwarding {
+</span></span><span style="display:flex;"><span>		type filter hook forward priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET oifname $WAN_INTERFACE accept
+</span></span><span style="display:flex;"><span>		iifname $WAN_INTERFACE ip daddr $LAN_SUBNET ct state related,established accept
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		ip daddr $WEB_SERVER tcp dport @WEB_SERVER_PORTS accept
+</span></span><span style="display:flex;"><span>		ip saddr $WEB_SERVER ct state related,established accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table nat {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	set WEB_SERVER_PORTS {
+</span></span><span style="display:flex;"><span>		type inet_service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		elements = { 80, 443 }
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain prerouting {
+</span></span><span style="display:flex;"><span>		type nat hook prerouting priority 0
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		iif $WAN_INTERFACE tcp dport @WEB_SERVER_PORTS dnat $WEB_SERVER
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain postrouting {
+</span></span><span style="display:flex;"><span>		type nat hook postrouting priority 0
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		oif $WAN_INTERFACE masquerade
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This configuration is an example of how you can allow public internet traffic to hit your private network web server. As the internet is only aware of your public IP for traffic to reach your web server on it’s private IP a few things need to happen in your router.</p>
+<h3 id="phase-1-the-incoming-web-request">Phase 1: The incoming web request</h3>
+<h4 id="11-pre-routing">1.1 Pre-routing</h4>
+<p>The traffic will reach your router with the destination being marked as your public IP. Because the public IP belongs to your router, without modification this traffic would hit the incoming chain and be processed there but we need it to be processed via our forwarding chain. To do this a rule is required to change the destination of the traffic from your public IP address to the private IP of our web server before the routing decision is made.</p>
+<p>That is handled by this line in your pre-routing chain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>iif $WAN_INTERFACE tcp dport @WEB_SERVER_PORTS dnat $WEB_SERVER
+</span></span></code></pre></div><p>In plain English: When incoming traffic hits the interface $WAN_INTERFACE on the destination TCP ports @WEB_SERVER_PORTS perform a network address translation of the destination to be $WEB_SERVER.</p>
+<h4 id="12-filtering">1.2 Filtering</h4>
+<p>With the traffic destination no longer being an IP assigned to the router it will be assessed in the forwarding chain. A rule is required to say that traffic to the web server on HTTP/S ports from the internet is allowed.</p>
+<p>That is handled by this line in your forwarding chain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip daddr $WEB_SERVER tcp dport @WEB_SERVER_PORTS accept
+</span></span></code></pre></div><p>In plain English: For traffic where the destination is $WEB_SERVER on TCP ports @WEB_SERVER_PORTS accept the packets for delivery.</p>
+<h4 id="13-post-routing">1.3 Post-routing</h4>
+<p>As the packet should be on its way to the correct target there is no need for a post-routing rule.</p>
+<h3 id="phase-2-the-outgoing-response">Phase 2: The outgoing response</h3>
+<h4 id="21-pre-routing">2.1 Pre-routing</h4>
+<p>As the packet should be on its way back to the correct target there is no need for a pre-routing rule.</p>
+<h4 id="22-filtering">2.2 Filtering</h4>
+<p>With the destination being a public IP it will be assessed in the forwarding chain. A rule is required to say that traffic from the web server is allowed back out to the internet.</p>
+<p>That is handled by this line in your forwarding chain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip saddr $WEB_SERVER ct state related,established accept
+</span></span></code></pre></div><p>In plain English: For traffic where the source is $WEB_SERVER and the state of the packet is related or established accept the packets for delivery.</p>
+<p>Technically this is not needed because the following rule also covers this, but it helps to be explicit because if you make changes down the track you might miss that this rule has multiple functions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip saddr $LAN_SUBNET oifname $WAN_INTERFACE accept
+</span></span></code></pre></div><p>2.3 Post-routing</p>
+<p>The traffic leaving the router will still have the source IP as the web server’s private IP. A rule should be created to change the source IP of the web traffic to have the public IP.</p>
+<p>That is handled by this line in your postrouting chain:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>oif $WAN_INTERFACE masquerade
+</span></span></code></pre></div><p>In plain English: When outgoing traffic leaves the interface $WAN_INTERFACE masquerade it as that interface (as in perform a network address translation of the source to be the IP of $WAN_INTERFACE).</p>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/networkenjin/" class="no-caps">#Networkenjin</a>&nbsp;<a href="/tags/linux/" class="no-caps">#Linux</a>&nbsp;<a href="/tags/routing/" class="no-caps">#Routing</a>&nbsp;<a href="/tags/nftables/" class="no-caps">#Nftables</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	app.snips.addVariable("waninterface", { "i":1, "h":"WAN Interface", "p":"eth1", "c":"gd-m6" });
+	app.snips.addVariable("lansubnet", { "i":1, "h":"LAN Subnet", "p":"192.168.1.0/24", "c":"gd-m6" });
+	app.snips.addVariable("webserverprivateip", { "i":1, "h":"Web server private IP", "p":"192.168.1.201", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

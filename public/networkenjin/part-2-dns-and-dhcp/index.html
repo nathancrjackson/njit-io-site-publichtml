@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>NetworkEnjin – Part 2: DNS and DHCP with DNSMasq | NJIT.io</title>
+<meta name="description" content="How to install DNSMasq and then configure it to handle DHCP and DNS">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/networkenjin/part-2-dns-and-dhcp/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="NetworkEnjin – Part 2: DNS and DHCP with DNSMasq">
+  <meta property="og:description" content="How to install DNSMasq and then configure it to handle DHCP and DNS">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="projects">
+    <meta property="article:tag" content="Networkenjin">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Dns">
+    <meta property="article:tag" content="Dhcp">
+    <meta property="article:tag" content="Dnsmasq">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NetworkEnjin – Part 2: DNS and DHCP with DNSMasq">
+  <meta name="twitter:description" content="How to install DNSMasq and then configure it to handle DHCP and DNS">
+
+
+  <meta itemprop="name" content="NetworkEnjin – Part 2: DNS and DHCP with DNSMasq">
+  <meta itemprop="description" content="How to install DNSMasq and then configure it to handle DHCP and DNS">
+  <meta itemprop="wordCount" content="685">
+  <meta itemprop="keywords" content="Networkenjin,Linux,Dns,Dhcp,Dnsmasq">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">NetworkEnjin – Part 2: DNS and DHCP with DNSMasq</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<h2 id="installing-dnsmasq">Installing DNSMasq</h2>
+<p>To install dnsmasq:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install dnsmasq
+</span></span></code></pre></div><p>You will see an error along the lines of &ldquo;failed to create listening socket for port 53: Address already in use&rdquo; that&rsquo;s because systemd-resolved.service is running. We&rsquo;ll disable that later once dnsmasq is configured.</p>
+<p>Rename the default dnsmasq config file in case you would like to reference it later:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mv /etc/dnsmasq.conf /etc/dnsmasq.default.conf
+</span></span></code></pre></div><p>Create a new /etc/dnsmasq.conf and simply fill it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>conf-dir=/etc/dnsmasq.d/,*.conf
+</span></span></code></pre></div><p>In case /etc/dnsmasq.d doesn&rsquo;t exist run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mkdir -p /etc/dnsmasq.d
+</span></span></code></pre></div><h2 id="configuring-dns">Configuring DNS</h2>
+<p>Create /etc/dnsmasq.d/dns.conf and fill it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>no-resolv
+</span></span><span style="display:flex;"><span>server={:DNSServerIP:}
+</span></span></code></pre></div><p>This will delete tell dnsmasq to ignore what the server has it&rsquo;s dns directed to whatever you set {:DNSServerIP:} to be. You can specify multiple DNS servers by having multiple server lines.</p>
+<h2 id="configuring-dhcp">Configuring DHCP</h2>
+<p>Create /etc/dnsmasq.d/dhcp.conf and fill it with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>dhcp-authoritative
+</span></span><span style="display:flex;"><span>dhcp-leasefile=/opt/dnsmasq/dnsmasq.leases
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no-dhcp-interface={:WANInterface:}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>dhcp-option=option:router,{:LANIP:}
+</span></span><span style="display:flex;"><span>dhcp-option=option:dns-server,{:LANIP:}
+</span></span><span style="display:flex;"><span>dhcp-range={:DHCPStartIP:},{:DHCPEndIP:},8h
+</span></span></code></pre></div><p>To configure IP reservations add this line for each reservation you would like to make</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>dhcp-host={:MACAddress:}, {:IPReservation:}
+</span></span></code></pre></div><p>To resolve hostnames to a domain add this</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>expand-hosts
+</span></span><span style="display:flex;"><span>domain={:LocalDomain:}
+</span></span></code></pre></div><p>You&rsquo;ll need to create the following folder for the dhcp lease file: /opt/dnsmasq</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mkdir -p /opt/dnsmasq
+</span></span></code></pre></div><h2 id="disabling-systemds-resolved">Disabling systemd’s resolved</h2>
+<p>Once you are happy with your config disable systemd’s resolved and start dnsmasq</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl stop systemd-resolved.service
+</span></span><span style="display:flex;"><span>systemctl disable systemd-resolved.service
+</span></span><span style="display:flex;"><span>systemctl start dnsmasq.service
+</span></span></code></pre></div><h2 id="optional-reduce-snooping-with-dns-over-https">Optional: Reduce snooping with DNS over HTTPS</h2>
+<p>Install the tools to build our HTTPS to DNS proxy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install git build-essential cmake libc-ares-dev libcurl4-openssl-dev libev-dev
+</span></span></code></pre></div><p>For our HTTPS to DNS proxy we are going to be using the following GitHub project: <a href="https://github.com/aarond10/https_dns_proxy">https://github.com/aarond10/https_dns_proxy</a></p>
+<p>From wherever you feel appropriate clone the project, compile it and copy it to /usr/bin</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>git clone https://github.com/aarond10/https_dns_proxy.git
+</span></span><span style="display:flex;"><span>cd https_dns_proxy
+</span></span><span style="display:flex;"><span>cmake .
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>sudo cp ./https_dns_proxy /usr/bin
+</span></span></code></pre></div><p>Create a systemd service to run the proxy with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl edit --full --force https_dns_proxy.service
+</span></span></code></pre></div><p>Make the contents of that service</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>Description=HTTPS to DNS Proxy
+</span></span><span style="display:flex;"><span>After=network.target
+</span></span><span style="display:flex;"><span>StartLimitIntervalSec=0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Service]
+</span></span><span style="display:flex;"><span>Type=simple
+</span></span><span style="display:flex;"><span>Restart=always
+</span></span><span style="display:flex;"><span>RestartSec=3
+</span></span><span style="display:flex;"><span>User=nobody
+</span></span><span style="display:flex;"><span>Group=nogroup
+</span></span><span style="display:flex;"><span>ExecStart=/usr/bin/https_dns_proxy -a 127.0.0.1 -p 5053 -4 -b 8.8.8.8,8.8.4.4 -r &#34;https://dns.google/dns-query&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Install]
+</span></span><span style="display:flex;"><span>WantedBy=multi-user.target
+</span></span></code></pre></div><p>The ExecStart line is where the magic happens. It starts https_dns_proxy listening on localhost port 5053 and looks at Google&rsquo;s DoH servers.</p>
+<p>Yes I do see irony of reducing snooping by setting my DNS to use Google&rsquo;s servers. That&rsquo;s a personal choice I have made, you can set it to be another provider if you like. As an example if you would rather use CloudFlare as your DNS provider change the ExecStart line to be</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ExecStart=/usr/bin/https_dns_proxy -a 127.0.0.1 -p 5053 -4 -b 1.1.1.1,1.0.0.1 -r &#34;https://cloudflare-dns.com/dns-query&#34;
+</span></span></code></pre></div><p>Once you save and exit out of the editor we&rsquo;ll need to start and enable the service</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl enable https_dns_proxy.service
+</span></span><span style="display:flex;"><span>systemctl start https_dns_proxy.service
+</span></span></code></pre></div><p>Edit /etc/dnsmasq.d/dns.conf and replace your upstream DNS servers with just</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>server=127.0.0.1#5053
+</span></span></code></pre></div><p>Before you start testing restart dnsmasq</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl restart dnsmasq.service
+</span></span></code></pre></div><h2 id="updating-our-base-firewall">Updating our base firewall</h2>
+<p>For DNS and DHCP to work we will need to update our firewall&rsquo;s base config in /etc/nftables.conf</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/usr/sbin/nft -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flush ruleset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>define WAN_INTERFACE = {:WANInterface:}
+</span></span><span style="display:flex;"><span>define LAN_SUBNET = {:LANSubnet:}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table inet filter {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	set DNSMASQ_ALLOW_UDP {
+</span></span><span style="display:flex;"><span>		type inet_service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		elements = {
+</span></span><span style="display:flex;"><span>			53, 67
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	set DNSMASQ_ALLOW_TCP {
+</span></span><span style="display:flex;"><span>		type inet_service
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		elements = {
+</span></span><span style="display:flex;"><span>			53
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain outgoing {
+</span></span><span style="display:flex;"><span>		type filter hook output priority 100
+</span></span><span style="display:flex;"><span>		policy accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	chain incoming {
+</span></span><span style="display:flex;"><span>		type filter hook input priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ct state established,related accept
+</span></span><span style="display:flex;"><span>		iif lo accept
+</span></span><span style="display:flex;"><span>		meta l4proto {icmp, icmpv6} accept
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET tcp dport 22 accept
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		udp sport bootpc udp dport bootps ip saddr 0.0.0.0 ip daddr 255.255.255.255 accept
+</span></span><span style="display:flex;"><span>		udp dport @DNSMASQ_ALLOW_UDP accept
+</span></span><span style="display:flex;"><span>		tcp dport @DNSMASQ_ALLOW_TCP accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain forwarding {
+</span></span><span style="display:flex;"><span>		type filter hook forward priority 0
+</span></span><span style="display:flex;"><span>		policy drop
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		ip saddr $LAN_SUBNET oifname $WAN_INTERFACE accept
+</span></span><span style="display:flex;"><span>		iifname $WAN_INTERFACE ip daddr $LAN_SUBNET ct state related,established accept
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>table nat {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain prerouting {
+</span></span><span style="display:flex;"><span>		type nat hook prerouting priority 0
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	chain postrouting {
+</span></span><span style="display:flex;"><span>		type nat hook postrouting priority 0
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>While what has changed here is mostly self explanatory the following line may have turned some heads.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>udp sport bootpc udp dport bootps ip saddr 0.0.0.0 ip daddr 255.255.255.255 accept
+</span></span></code></pre></div><p>Essentially this line is to accept DHCP discovery packets which occur before the device has an IP on the network.</p>
+<p>Now this is all we need for our router to handle DNS and DHCP.</p>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/networkenjin/" class="no-caps">#Networkenjin</a>&nbsp;<a href="/tags/linux/" class="no-caps">#Linux</a>&nbsp;<a href="/tags/dns/" class="no-caps">#Dns</a>&nbsp;<a href="/tags/dhcp/" class="no-caps">#Dhcp</a>&nbsp;<a href="/tags/dnsmasq/" class="no-caps">#Dnsmasq</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	app.snips.addVariable("waninterface", { "i":1, "h":"WAN Interface", "p":"eth1", "c":"gd-m6" });
+	app.snips.addVariable("lanip", { "i":1, "h":"LAN IP", "p":"192.168.1.254", "c":"gd-m6" });
+	app.snips.addVariable("lansubnet", { "i":1, "h":"LAN Subnet", "p":"192.168.1.0/24", "c":"gd-m6" });
+	app.snips.addVariable("dnsserverip", { "i":1, "h":"DNS Server IP", "p":"8.8.8.8", "c":"gd-m6" });
+	app.snips.addVariable("dhcpstartip", { "i":1, "h":"DHCP Range Start IP", "p":"192.168.1.100", "c":"gd-m6" });
+	app.snips.addVariable("dhcpendip", { "i":1, "h":"DHCP Range End IP", "p":"192.168.1.199", "c":"gd-m6" });
+	app.snips.addVariable("macaddress", { "i":1, "h":"Reservation MAC", "p":"00:00:00:00:00:00", "c":"gd-m6" });
+	app.snips.addVariable("ipreservation", { "i":1, "h":"Reservation IP", "p":"192.168.1.1", "c":"gd-m6" });
+	app.snips.addVariable("localdomain", { "i":1, "h":"Local Domain", "p":"domain.local", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>NetworkEnjin – Part 0: PPPoE | NJIT.io</title>
+<meta name="description" content="An optional rough guide for configuring PPPoE connections in Linux">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/networkenjin/part-0-pppoe/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="NetworkEnjin – Part 0: PPPoE">
+  <meta property="og:description" content="An optional rough guide for configuring PPPoE connections in Linux">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="projects">
+    <meta property="article:tag" content="Networkenjin">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Modem">
+    <meta property="article:tag" content="Pppoe">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NetworkEnjin – Part 0: PPPoE">
+  <meta name="twitter:description" content="An optional rough guide for configuring PPPoE connections in Linux">
+
+
+  <meta itemprop="name" content="NetworkEnjin – Part 0: PPPoE">
+  <meta itemprop="description" content="An optional rough guide for configuring PPPoE connections in Linux">
+  <meta itemprop="wordCount" content="490">
+  <meta itemprop="keywords" content="Networkenjin,Linux,Modem,Pppoe">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">NetworkEnjin – Part 0: PPPoE</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<p>This part is skippable for those of you who don&rsquo;t have to interface with a PPPoE modem for their internet, but essential those who do. All the information I found on this topic was quite old, but with a small amount of trial and error I got it working in my own home.</p>
+<p><strong>Please note:</strong></p>
+<ol>
+<li>This part isn&rsquo;t tested as well as the others. There is a lot below that depends on how your upstream provider wants you to connect to their network.</li>
+<li>If you have to do PPPoE with a VLAN then that will need to be setup first. The PPP daemon doesn&rsquo;t handle VLANs so you&rsquo;ll need to create a VLAN sub-interface to use as your ethernet interface below (e.g. eth0.2 for VLAN 2 via eth0).</li>
+<li>The version of Ubuntu you are running might not include the PPPoE kernel modules anymore. <a href="https://ubuntuforums.org/showthread.php?t=2479569">Here is me finding out the hard way</a> that this happened with the Raspberry Pi build in 22.04 so you now need to install the <code>linux-modules-extra-raspi</code> too (<a href="https://web.archive.org/web/20240905114207/https://ubuntuforums.org/showthread.php?t=2479569">backup web archive link</a>).</li>
+</ol>
+<p>While the device still has access to the internet install PPPoE support</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install pppoe
+</span></span></code></pre></div><p>As per my note 3 above, if you are doing this on a Raspberry Pi you&rsquo;ll also need to run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install linux-modules-extra-raspi
+</span></span></code></pre></div><p>Save your credentials into /etc/ppp/chap-secrets as required</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&#34;{:Username:}&#34; * &#34;{:Password:}&#34;
+</span></span></code></pre></div><p>Create your provider /etc/ppp/peers/{:ConnectionID:}</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>linkname {:ConnectionID:}
+</span></span><span style="display:flex;"><span>user {:Username:}
+</span></span><span style="display:flex;"><span>plugin rp-pppoe.so
+</span></span><span style="display:flex;"><span>noipdefault
+</span></span><span style="display:flex;"><span>defaultroute
+</span></span><span style="display:flex;"><span>hide-password
+</span></span><span style="display:flex;"><span>usepeerdns 
+</span></span><span style="display:flex;"><span>lcp-echo-interval 20
+</span></span><span style="display:flex;"><span>lcp-echo-failure 3
+</span></span><span style="display:flex;"><span>noauth
+</span></span><span style="display:flex;"><span>persist
+</span></span><span style="display:flex;"><span>maxfail 0
+</span></span><span style="display:flex;"><span>mtu 1492
+</span></span><span style="display:flex;"><span>mru 1492
+</span></span><span style="display:flex;"><span>noaccomp
+</span></span><span style="display:flex;"><span>default-asyncmap
+</span></span><span style="display:flex;"><span>+ipv6
+</span></span></code></pre></div><p><strong>Please note:</strong></p>
+<ol>
+<li>This is just my template I have used, you may need/want to adjust some values. For a complete list of options I found this to be a useful reference <a href="https://ppp.samba.org/pppd.html">https://ppp.samba.org/pppd.html</a></li>
+<li>The plugin name may change. I&rsquo;m actually running Alpine Linux for my home router now and my line in that config is: <code>plugin pppoe.so eth1.2</code></li>
+<li>If later you get an error like <em>&ldquo;Failed to create PPPoE socket: Address family not supported by protocol&rdquo;</em> or <em>&ldquo;Couldn&rsquo;t set tty to PPP discipline: Invalid argument&rdquo;</em> please see note 3 in my first lot of notes.</li>
+</ol>
+<p>Next create a new service by running:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl edit --force --full pppd@.service
+</span></span></code></pre></div><p>And fill it with the following details</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[Unit]
+</span></span><span style="display:flex;"><span>Description=pppd for %I
+</span></span><span style="display:flex;"><span>After=network.target
+</span></span><span style="display:flex;"><span>StartLimitIntervalSec=0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Service]
+</span></span><span style="display:flex;"><span>Type=forking
+</span></span><span style="display:flex;"><span>Restart=always
+</span></span><span style="display:flex;"><span>RestartSec=5
+</span></span><span style="display:flex;"><span>ExecStart=/usr/sbin/pppd call %i {:EthernetDevice:}
+</span></span><span style="display:flex;"><span>ExecReload=/bin/kill -s HUP $MAINPID
+</span></span><span style="display:flex;"><span>ExecStop=/bin/kill -s QUIT $MAINPID
+</span></span><span style="display:flex;"><span>PrivateTmp=true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[Install]
+</span></span><span style="display:flex;"><span>WantedBy=multi-user.target
+</span></span></code></pre></div><p>If you need to run a script to prepare your ethernet device before calling pppd add something like the following under the [service] section</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ExecStartPre=/etc/ppp/preparedevice.sh {:EthernetDevice:}
+</span></span></code></pre></div><p>As I was using a USB to Ethernet device as my second NIC so I required the following script to help in specific scenarios</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#!/bin/bash
+</span></span><span style="display:flex;"><span>echo &#34;Preparing $1&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>/sbin/ip link set mtu 1500 dev $1
+</span></span><span style="display:flex;"><span>/sbin/ip link set up dev $1
+</span></span></code></pre></div><p>Once you&rsquo;re all good to go enable and start the service</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl enable pppd@{:ConnectionID:}
+</span></span><span style="display:flex;"><span>systemctl start pppd@{:ConnectionID:}
+</span></span></code></pre></div><p>To use the connection as your default gateway add this route:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ip route add 0.0.0.0/0 dev {:PPPDevice:}
+</span></span></code></pre></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/networkenjin/" class="no-caps">#Networkenjin</a>&nbsp;<a href="/tags/linux/" class="no-caps">#Linux</a>&nbsp;<a href="/tags/modem/" class="no-caps">#Modem</a>&nbsp;<a href="/tags/pppoe/" class="no-caps">#Pppoe</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	app.snips.addVariable("username", { "i":1, "h":"Username", "p":"YourUsernameHere", "c":"gd-m6" });
+	app.snips.addVariable("password", { "i":1, "h":"Password", "p":"YourPasswordHere", "c":"gd-m6" });
+	app.snips.addVariable("connectionid", { "i":1, "h":"Connection ID (alpha-numberic, no spaces)", "p":"wan0", "c":"gd-m6" });
+	app.snips.addVariable("ethernetdevice", { "i":1, "h":"Ethernet Device", "p":"eth0", "c":"gd-m6" });
+	app.snips.addVariable("pppdevice", { "i":1, "h":"PPP Device", "p":"pppoe0", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

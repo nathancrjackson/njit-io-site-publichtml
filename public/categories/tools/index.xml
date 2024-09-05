@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on NJIT.io</title>
+    <link>https://njit.io/categories/tools/</link>
+    <description>Recent content in Tools on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://njit.io/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Iperf 3 for Windows</title>
+      <link>https://njit.io/iperf-3-for-windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/iperf-3-for-windows/</guid>
+      <description>Recent Iperf3 binaries for Windows</description>
+    </item>
+    <item>
+      <title>Message Composer</title>
+      <link>https://njit.io/message-composer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/message-composer/</guid>
+      <description>Define common message scripts as JSON to be able to quickly build and populate message templates</description>
+    </item>
+    <item>
+      <title>Password Generator</title>
+      <link>https://njit.io/password-generator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/password-generator/</guid>
+      <description>A simple password generator that tries to balance security with ease to memorise.</description>
+    </item>
+    <item>
+      <title>Template Processor</title>
+      <link>https://njit.io/template-processor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/template-processor/</guid>
+      <description>A simple tool for processing snippets that use my {:Notation:}.</description>
+    </item>
+  </channel>
+</rss>

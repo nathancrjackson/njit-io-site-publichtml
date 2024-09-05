@@ -1,0 +1,9 @@
+{
+"userid" : 20170408,
+"listname": "New Cities",
+"valuepairs" : [
+	{ "id" : 22, "name": "New York" },
+	{ "id" : 6, "name": "New Delhi" },
+	{ "id" : 23, "name": "New Batmania" }
+]
+}

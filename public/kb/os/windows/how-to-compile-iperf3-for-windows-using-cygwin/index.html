@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>How to compile Iperf3 for Windows using Cygwin | NJIT.io</title>
+<meta name="description" content="How to use Cygwin to compile Iperf3 for Windows.">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/kb/os/windows/how-to-compile-iperf3-for-windows-using-cygwin/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="How to compile Iperf3 for Windows using Cygwin">
+  <meta property="og:description" content="How to use Cygwin to compile Iperf3 for Windows.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="kb">
+    <meta property="article:published_time" content="2022-12-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-12-30T00:00:00+00:00">
+    <meta property="article:tag" content="Os">
+    <meta property="article:tag" content="Windows">
+    <meta property="article:tag" content="Iperf3">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to compile Iperf3 for Windows using Cygwin">
+  <meta name="twitter:description" content="How to use Cygwin to compile Iperf3 for Windows.">
+
+
+  <meta itemprop="name" content="How to compile Iperf3 for Windows using Cygwin">
+  <meta itemprop="description" content="How to use Cygwin to compile Iperf3 for Windows.">
+  <meta itemprop="datePublished" content="2022-12-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-12-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1062">
+  <meta itemprop="keywords" content="Os,Windows,Iperf3">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">How to compile Iperf3 for Windows using Cygwin</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<p>For work I occasionally need to do bandwidth testing, which my go-to tool for is Iperf3. As I work for a company that is Windows focused I generally need to do my testing from Windows computers. Generally when need to do a test I would download Iperf Windows binaries from <a href="https://iperf.fr/iperf-download.php">https://iperf.fr/iperf-download.php</a>. Recently though, I stumbled upon an issue where when testing from a Windows client to a Linux server my test wouldn’t run.</p>
+<p><img src="error-linux-server.png" alt="Linux error screenshot"><br>
+<em>My error on the Linux server</em></p>
+<p><img src="error-windows-client.png" alt="Windows error screenshot"><br>
+<em>My error on the Windows client</em></p>
+<p>Looking into it I noticed a large version difference, my Windows device was running version 3.1 but my Linux device was running 3.12. Going back to the download page (pictured below) I noticed the version on that site hadn’t been updated since 2016.</p>
+<p><img src="iperf3-downloads.png" alt="List of pre-compiled iPerf3 binaries for WIndows"><br>
+<em>As you can see it has been at least a minute since they updated this</em></p>
+<p>Inspecting the existing binaries from that site I had I could see that it was compiled using Cygwin. As the Iperf3 GitHug page clearly states that there are no dependencies for compiling this software I figured “surely I can just start compiling it myself” which after some trial and error I eventually did. In an effort to share the knowledge here is my guide so that you can too (or maybe apply this to compiling other Linux software for Windows).</p>
+<h2 id="part-1-install-and-configure-cygwin">Part 1: Install and configure Cygwin</h2>
+<p>After you’ve downloaded the software from the Cygwin project page it’s a fairly standard install (I assume for someone willing to take on this guide). There is a page asking which packages you wish to install, the only changes you need to make from the default is to add the wget package. We do need to get other packages but we’re going to do that “the easy way” soon.</p>
+<p><img src="cygwin-install-wget.png" alt="Cygwin package install screen"><br>
+<em>Adding wget should look a little like this, you can search for wget and then need to make sure the New column has whatever the latest version number is</em></p>
+<p>With that installed you should have a shortcut in your start menu for Cygwin’s terminal. I found it worked best when I forced it to Run as Administrator so I would recommend doing that too.</p>
+<p>As mentioned above we’re going to do package management the easy way which happens to be this project <a href="https://github.com/transcode-open/apt-cyg">https://github.com/transcode-open/apt-cyg</a>. The installation process is pretty straight forward:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wget https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg
+</span></span><span style="display:flex;"><span>install apt-cyg /bin
+</span></span></code></pre></div><p>With that done we can use apt-cyg to download and install all the packages we want. So let’s install our development tools</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt-cyg install git nano make cmake extra-cmake-modules automake autoconf gcc-core gcc-g++ gdb binutils cygwin-devel w32api-headers w32api-runtime libguile3.0_1 libisl23 libmpc3 libgc1
+</span></span></code></pre></div><p>Now it’s worth noting that not all of the above packages are required for compiling Iperf. It’s more of a generic development environment with a couple of specific requirements added in.</p>
+<h2 id="part-2-cloning-the-repo-building-iperf3-and-getting-the-binary-to-work">Part 2: Cloning the repo. building Iperf3 and getting the binary to work</h2>
+<p>With all of the above done correctly this part is fairly simple.</p>
+<p>Clone the git repo from <a href="https://github.com/esnet/iperf">https://github.com/esnet/iperf</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>git clone https://github.com/esnet/iperf.git
+</span></span></code></pre></div><p>Change directory into the repo</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cd iperf
+</span></span></code></pre></div><p>Follow the build instructions from README.md</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./configure; make; make install
+</span></span></code></pre></div><p>If your build was successful you should be able to run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>which iperf3
+</span></span></code></pre></div><p>…and you will see something like this</p>
+<p><img src="which-iperf3.png" alt="which command output"></p>
+<p>Now this doesn’t mean that our binary is immediately usable, we first need to check which libraries it links to. So run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cygcheck iperf3
+</span></span></code></pre></div><p>Which should give you something like</p>
+<p><img src="cygcheck-iperf3.png" alt="cygcheck command output"></p>
+<p>What we are on the look out for here are any DLLs which are in our Cygwin directory. Looking at the above you can see we need cygwin1.dll from the bin folder. So all we need to do is copy that DLL into the folder where the EXE was found.</p>
+<p>Next if you open that directory in CMD you should be able to run the following successfully:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>iperf3 -v
+</span></span></code></pre></div><p>The result should look like this:</p>
+<p><img src="iperf3-version.png" alt="iperf3 version flag output"></p>
+<p>That’s it, copy that EXE and DLL together to any other Windows machines (of compatible architecture) and you should be right to go.</p>
+<h2 id="part-3-troubleshooting-tips">Part 3: Troubleshooting tips</h2>
+<p>Ok, so this all looks easy enough but when I fail to update this guide in the future then you may need to do some troubleshooting. Now here are some quick tips:</p>
+<h3 id="tip-1-cygcheck-is-your-friend">Tip 1: cygcheck is your friend</h3>
+<p>If you are having issues getting an application that you downloaded using apt-cyg to run start by using cygcheck to detect what dependencies are missing. As an example I was having issues with make so I ran:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cygcheck make
+</span></span></code></pre></div><p>And would you look at that we’re missing a dependency:</p>
+<p><img src="cygcheck-make-error.png" alt="cygcheck make command error"><br>
+<em>We need to find cygguile-3.0-1.dll</em></p>
+<p>If you feel so inclined you can do this the GCC way and use <em>ldd</em> instead</p>
+<p><img src="ldd-make-error.png" alt="ldd make command error"><br>
+<em>Oooh, look at that… It’s the same thing but with slightly less cygwin-aware information</em></p>
+<h3 id="tip-2-apt-cyg-has-a-pretty-useful-search-function">Tip 2: apt-cyg has a pretty useful search function</h3>
+<p>Continuing our above example, let’s say you need to find cygguile-3.0-1.dll how would you do that? Try the following seach</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt-cyg searchall cygguile-3.0-1
+</span></span></code></pre></div><p><img src="searchall-example.png" alt="apt-cyg searchall example output"></p>
+<p>And if you look at that it lists a package named libguile3.0_1 which you may recognise as one of the packages we installed at the end of Part 1.</p>
+<h3 id="tip-3-simple-hello-app-for-testing-that-we-can-compile">Tip 3: simple hello app for testing that we can compile</h3>
+<p>If you wanna test that you can compile C apps, here is a quick “hello” app written in C which for the sake of this tip will be named: hello.c</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#include &lt;stdio.h&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>int main()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    printf(&#34;Hello from C\n&#34;);
+</span></span><span style="display:flex;"><span>    return 0;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>To compile it run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>gcc hello.c -o hello.exe
+</span></span></code></pre></div><p>…then if you get no errors and hello.exe exists you should be able to run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./hello.exe
+</span></span></code></pre></div><p>…which should look like this:</p>
+<p><img src="hello-example.png" alt="hello test app output"></p>
+<p>Right, but what should a problem look like? Well as an example I ran into the following issue:</p>
+<p><img src="gcc-error.png" alt="example gcc error"></p>
+<p>These errors are basically saying that we’re missing the advapi32, shell32, user32 and kernel32 libraries for linking. To resolve this we can go back to tip 2, so pick a library and do a search</p>
+<p><img src="gcc-error-resolution.png" alt="example gcc error resolution"></p>
+<p>Interestingly this search came up with 3 packages. A little bit of trial and error later I discovered w32api-runtime was the package to install which you may recognise as one of the packages we installed at the end of Part 1.</p>
+<h2 id="if-seems-like-it-requires-a-little-too-much-effort">If seems like it requires a little too much effort?</h2>
+<p>No problem, this isn’t for everyone. If you like instead you can go to my GitHub repo <a href="https://github.com/nathancrjackson/iperf3-windows-builds">https://github.com/nathancrjackson/iperf3-windows-builds</a> and download pre-compiled versions built by me.</p>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/os/" class="no-caps">#Os</a>&nbsp;<a href="/tags/windows/" class="no-caps">#Windows</a>&nbsp;<a href="/tags/iperf3/" class="no-caps">#Iperf3</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

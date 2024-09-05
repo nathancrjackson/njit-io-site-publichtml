@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hci on NJIT.io</title>
+    <link>https://njit.io/tags/hci/</link>
+    <description>Recent content in Hci on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/tags/hci/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nutanix AHV host manual shutdown/reboot procedure</title>
+      <link>https://njit.io/kb/hci/nutanix/ahv-host-manual-shutdown-reboot/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/ahv-host-manual-shutdown-reboot/</guid>
+      <description>The procedure for shutting down or rebooting a host in a Nutanix cluster.</description>
+    </item>
+    <item>
+      <title>Renaming Nutanix AHV host and Controller VM</title>
+      <link>https://njit.io/kb/hci/nutanix/renaming-ahv-host-and-cvm/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/renaming-ahv-host-and-cvm/</guid>
+      <description>A quick guide on how to rename a host and its CVM</description>
+    </item>
+    <item>
+      <title>How to create and destroy a cluster from Nutanix CVM</title>
+      <link>https://njit.io/kb/hci/nutanix/create-and-destroy-cluster-from-cvm/</link>
+      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/create-and-destroy-cluster-from-cvm/</guid>
+      <description>How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.</description>
+    </item>
+    <item>
+      <title>Nutanix default credentials</title>
+      <link>https://njit.io/kb/hci/nutanix/default-credentials/</link>
+      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/default-credentials/</guid>
+      <description>Default credentials for various Nutanix components</description>
+    </item>
+  </channel>
+</rss>

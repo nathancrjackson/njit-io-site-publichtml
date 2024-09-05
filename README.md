@@ -1,2 +1,2 @@
-# njit-io-site-publichtml
-NJIT.io website public html
+# NJIT.io website public html
+

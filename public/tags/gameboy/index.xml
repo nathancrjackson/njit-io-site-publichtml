@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gameboy on NJIT.io</title>
+    <link>https://njit.io/tags/gameboy/</link>
+    <description>Recent content in Gameboy on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/tags/gameboy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Game Boy CPU basics</title>
+      <link>https://njit.io/kb/development/gameboy/cpu-basics/</link>
+      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/development/gameboy/cpu-basics/</guid>
+      <description>Writing assembly code for the Game Boy isn’t as hard as it first may seem. Here are some basic things that you need to know before getting stuck into it.</description>
+    </item>
+    <item>
+      <title>Things to know before starting Game Boy development</title>
+      <link>https://njit.io/kb/development/gameboy/things-to-know-before-starting/</link>
+      <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/development/gameboy/things-to-know-before-starting/</guid>
+      <description>Interested in Game Boy development but want to get a bit of an idea what’s involved first? Here’s a quick list of things I think are useful to know.</description>
+    </item>
+  </channel>
+</rss>

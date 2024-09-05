@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NJTools.JS Snip example</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.njit.io/web/structure-css/1_x/latest/structure.css">
+	<script src="../src/js/njtools-core.js"></script>
+	<script src="common.js"></script>
+	<script defer src="../src/js/njtools-extensions.js"></script>
+	<script defer src="njt_snip.js"></script>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="body-blck">
+		<div class="body-cont" id="header">
+			<h1>NJTools.JS Examples</h1>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont">
+			<nav>
+				<ul class="rnav">
+					<li><a href="njt_js-dom-req.html">njt.js/dom/req</a></li>
+					<li><a href="njt_event.html">njt.event</a></li>
+					<li><a href="njt_element.html">njt.element</a></li>
+					<li class="active">njt.snip</li>
+					<li><a href="njt_modal.html">njt.modal</a></li>
+					<li><a href="njt_formbuilder.html">njt.formbuilder</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont" id="main-container">
+			<div class="gd-cont">
+				<div class="gd-s12">
+				<h2>NJT.Snip</h2>
+				<h3>Description</h3>
+				<p>The snip module is a tool for creating simple dynamic websites.</p>
+				<h3>Clock</h3>
+				<p class="clocksnip-clocktarget">The time is: {:time:}</p>
+				<h3>Linux command examples</h3>
+				<p>How to recursively set permissions on a file or folder:</p>
+				<pre snip-group="linuxcommands" snip-id="chmodcommand">chmod -R {:mode:} {:path:}</pre>
+				<p>How to recursively set ownership on a file or folder:</p>
+				<pre snip-group="linuxcommands" snip-id="chowncommand">chmod -R {:username:}:{:usergroup:} {:path:}</pre>
+				<p>You can fill in the variables using the following form:</p>
+				<div class="gd-cont">
+					<div class="gd-m6">
+						<label for="path-input">File or folder path
+							<input type="text" id="path-input" placeholder="/opt/custom-app">
+						</label>
+					</div>
+					<div class="gd-m6">
+						<label for="path-input">File or folder mode
+							<input type="text" id="mode-input" placeholder="755">
+						</label>
+					</div>
+					<div class="gd-m6">
+						<label for="username-input">Username
+							<input type="text" id="username-input" placeholder="service-account">
+						</label>
+					</div>
+					<div class="gd-m6">
+						<label for="usergroup-input">User group
+							<input type="text" id="usergroup-input" placeholder="service-group">
+						</label>
+					</div>
+					<div class="gd-s12">
+						<button onclick="window.njt.event.eventHandler(event)" njteventclick="updatechmod">Update chmod</button>
+						<button onclick="window.njt.event.eventHandler(event)" njteventclick="updatechown">Update chown</button>
+						<button onclick="window.njt.event.eventHandler(event)" njteventclick="updateboth">Update both</button>
+						<button onclick="window.njt.event.eventHandler(event)" njteventclick="resetboth">Reset both</button>
+					</div>
+				</div>
+				<h3>Console</h3>
+				<pre id="jsconsole">Javascripts messages will go here</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pppoe on NJIT.io</title>
+    <link>https://njit.io/tags/pppoe/</link>
+    <description>Recent content in Pppoe on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://njit.io/tags/pppoe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NetworkEnjin – Part 0: PPPoE</title>
+      <link>https://njit.io/networkenjin/part-0-pppoe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-0-pppoe/</guid>
+      <description>An optional rough guide for configuring PPPoE connections in Linux</description>
+    </item>
+  </channel>
+</rss>

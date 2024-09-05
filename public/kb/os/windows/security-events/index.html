@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Windows Security Events | NJIT.io</title>
+<meta name="description" content="Some useful Windows event IDs to know when auditing security logs.">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/kb/os/windows/security-events/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="Windows Security Events">
+  <meta property="og:description" content="Some useful Windows event IDs to know when auditing security logs.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="kb">
+    <meta property="article:published_time" content="2022-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Os">
+    <meta property="article:tag" content="Windows">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Windows Security Events">
+  <meta name="twitter:description" content="Some useful Windows event IDs to know when auditing security logs.">
+
+
+  <meta itemprop="name" content="Windows Security Events">
+  <meta itemprop="description" content="Some useful Windows event IDs to know when auditing security logs.">
+  <meta itemprop="datePublished" content="2022-09-20T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-09-20T00:00:00+00:00">
+  <meta itemprop="wordCount" content="166">
+  <meta itemprop="keywords" content="Os,Windows">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">Windows Security Events</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<h2 id="common-entries">Common entries</h2>
+<p>Some common entries (grouped by category) are:</p>
+<h3 id="logon">Logon</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Keyword</th>
+          <th style="text-align: left">Event ID</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4624</td>
+          <td style="text-align: left">An account was successfully logged on</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Failure</td>
+          <td style="text-align: left">4625</td>
+          <td style="text-align: left">An account failed to log on</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4648</td>
+          <td style="text-align: left">A logon was attempted using explicit credentials</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="logoff">Logoff</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Keyword</th>
+          <th style="text-align: left">Event ID</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4634</td>
+          <td style="text-align: left">An account was logged off</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="user-account-management">User Account Management</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Keyword</th>
+          <th style="text-align: left">Event ID</th>
+          <th style="text-align: left">Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4722</td>
+          <td style="text-align: left">A user account was enabled</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4723</td>
+          <td style="text-align: left">An attempt was made to change an account’s password</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4725</td>
+          <td style="text-align: left">A user account was disabled</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4738</td>
+          <td style="text-align: left">A user account was changed</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Audit Success</td>
+          <td style="text-align: left">4740</td>
+          <td style="text-align: left">A user account was locked out</td>
+      </tr>
+  </tbody>
+</table>
+<p><em>The User Account Management category should only be present on domain controllers</em></p>
+<h2 id="useful-custom-query">Useful custom query</h2>
+<p>A useful custom query that can’t be achieved simply through a filter is:</p>
+<h3 id="get-logon-and-logoff-events-for-a-specific-user">Get logon and logoff events for a specific user</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;QueryList&gt;
+</span></span><span style="display:flex;"><span>  &lt;Query Id=&#34;0&#34; Path=&#34;Security&#34;&gt;
+</span></span><span style="display:flex;"><span>    &lt;Select Path=&#34;Security&#34;&gt;
+</span></span><span style="display:flex;"><span>      *[
+</span></span><span style="display:flex;"><span>        EventData[Data[@Name=&#39;TargetUserName&#39;]=&#39;{:Username:}&#39;]
+</span></span><span style="display:flex;"><span>        and
+</span></span><span style="display:flex;"><span>        System[ (EventID &amp;gt;= 4620 and EventID &amp;lt;= 4639) ]
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    &lt;/Select&gt;
+</span></span><span style="display:flex;"><span>  &lt;/Query&gt;
+</span></span><span style="display:flex;"><span>&lt;/QueryList&gt;
+</span></span></code></pre></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/os/" class="no-caps">#Os</a>&nbsp;<a href="/tags/windows/" class="no-caps">#Windows</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	app.snips.addVariable("username", { "i":1, "h":"Username", "p":"administrator", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

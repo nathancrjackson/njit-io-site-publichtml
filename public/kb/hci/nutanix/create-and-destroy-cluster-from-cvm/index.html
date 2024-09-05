@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>How to create and destroy a cluster from Nutanix CVM | NJIT.io</title>
+<meta name="description" content="How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/kb/hci/nutanix/create-and-destroy-cluster-from-cvm/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="How to create and destroy a cluster from Nutanix CVM">
+  <meta property="og:description" content="How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="kb">
+    <meta property="article:published_time" content="2020-10-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2020-10-24T00:00:00+00:00">
+    <meta property="article:tag" content="Hci">
+    <meta property="article:tag" content="Nutanix">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How to create and destroy a cluster from Nutanix CVM">
+  <meta name="twitter:description" content="How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.">
+
+
+  <meta itemprop="name" content="How to create and destroy a cluster from Nutanix CVM">
+  <meta itemprop="description" content="How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.">
+  <meta itemprop="datePublished" content="2020-10-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2020-10-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="274">
+  <meta itemprop="keywords" content="Hci,Nutanix">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">How to create and destroy a cluster from Nutanix CVM</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+			<div class="gd-s12">
+<p>How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.</p>
+<h2 id="how-to-create-a-single-node-cluster">How to create a single-node cluster</h2>
+<p>Log into the CVM via SSH and run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cluster -s {:CVMIP:} --redundancy_factor=1 create
+</span></span></code></pre></div><p>The single-node should automatically start once it is complete.</p>
+<h2 id="how-to-create-a-multiple-node-cluster">How to create a multiple-node cluster</h2>
+<p>Log into a CVM via SSH and run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cluster -s {:CVMIPs:} create
+</span></span></code></pre></div><p>CVM IPs need to be comma-separated, use the “fill in variables” tool to see this in action.</p>
+<p>A minimum of three nodes is required here. Setting up a two node cluster with witness VM is not covered in the kb.</p>
+<p>The multiple-node should automatically start once it is complete</p>
+<h2 id="initial-config-for-cluster">Initial config for cluster</h2>
+<p>Set your cluster name. It can only contain alphanumeric characters, dots, hyphens and underscores <em>(Please note: no spaces)</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster edit-params new-name=&#34;{:ClusterName:}&#34;
+</span></span></code></pre></div><p>Add your DNS server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster add-to-name-servers servers=&#34;{:DNSIP:}&#34;
+</span></span></code></pre></div><p>You can check your DNS servers with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster get-name-servers
+</span></span></code></pre></div><p>Set the timezone your cluster is in (see <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">https://en.wikipedia.org/wiki/List_of_tz_database_time_zones</a> for timezone list)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster set-timezone timezone=&#34;{:TZName:}&#34;
+</span></span></code></pre></div><p>You can check your current timezone with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster info | grep Timezone
+</span></span></code></pre></div><p>Add your NTP server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster add-to-ntp-servers servers=&#34;{:NTPServer:}&#34;
+</span></span></code></pre></div><p>You can check your NTP servers with</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster get-ntp-servers
+</span></span></code></pre></div><p>For a multiple-node cluster you need to set your virtual IP address for the cluster</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ncli cluster set-external-ip-address external-ip-address=&#34;{:ClusterIP:}&#34;
+</span></span></code></pre></div><h2 id="how-to-destroy-a-cluster">How to destroy a cluster</h2>
+<p><strong>Please note: This will delete all guest VM data in the cluster</strong></p>
+<p>Log into a CVM via SSH and stop the cluster</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cluster stop
+</span></span></code></pre></div><p>Next once all CVM’s show that the cluster has stopped run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cluster destroy
+</span></span></code></pre></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/hci/" class="no-caps">#Hci</a>&nbsp;<a href="/tags/nutanix/" class="no-caps">#Nutanix</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+
+	app.snips.functions["textAreaToArray"] = function(textareaValue)
+		{
+			let result = [];
+
+			textareaValue = textareaValue.replaceAll(',', "\n");
+			textareaValue = textareaValue.replaceAll(' ', "\n");
+			textareaValue = textareaValue.split("\n");
+
+			for (let i = 0; i < textareaValue.length; i++)
+				{ if (textareaValue[i].trim() != '')	{ result.push(textareaValue[i].trim()); } }
+
+			return result;
+		}
+
+	app.snips.functions["getFirstElement"] = function(itemArray)
+		{
+			return itemArray[0];
+		}
+
+	app.snips.functions["joinWithCommas"] = function(itemArray)
+		{
+			return itemArray.join(',');
+		}
+
+	app.snips.addVariable("cvmip", { "i":0, s:"cvmips", f:["textAreaToArray","getFirstElement"] });
+	app.snips.addVariable("cvmips", { "i":1, "h":"CVM IPs (will grab first for single node example)", "p":"192.168.1.241, 192.168.1.242, 192.168.1.243", "c":"gd-s12", "r":3, "f":["textAreaToArray","joinWithCommas"] });
+	app.snips.addVariable("clustername", { "i":1, "h":"Cluster name", "p":"Company-Cluster", "c":"gd-m6" });
+	app.snips.addVariable("clusterip", { "i":1, "h":"Cluster Prism IP", "p":"192.168.1.240", "c":"gd-m6" });
+	app.snips.addVariable("dnsip", { "i":1, "h":"DNS server IP", "p":"192.168.1.254", "c":"gd-m6" });
+	app.snips.addVariable("tzname", { "i":1, "h":"Time zone name", "p":"Australia/Melbourne", "c":"gd-m6" });
+	app.snips.addVariable("ntpserver", { "i":1, "h":"Time zone NTP poo'", "p":"au.pool.ntp.org", "c":"gd-m6" });
+
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>

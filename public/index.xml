@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NJIT.io</title>
+    <link>https://njit.io/</link>
+    <description>Recent content on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Game Boy CPU basics</title>
+      <link>https://njit.io/kb/development/gameboy/cpu-basics/</link>
+      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/development/gameboy/cpu-basics/</guid>
+      <description>Writing assembly code for the Game Boy isn’t as hard as it first may seem. Here are some basic things that you need to know before getting stuck into it.</description>
+    </item>
+    <item>
+      <title>Things to know before starting Game Boy development</title>
+      <link>https://njit.io/kb/development/gameboy/things-to-know-before-starting/</link>
+      <pubDate>Thu, 06 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/development/gameboy/things-to-know-before-starting/</guid>
+      <description>Interested in Game Boy development but want to get a bit of an idea what’s involved first? Here’s a quick list of things I think are useful to know.</description>
+    </item>
+    <item>
+      <title>Windows 11 UI registry hacks</title>
+      <link>https://njit.io/kb/os/windows/windows-11-ui-registry-hacks/</link>
+      <pubDate>Sat, 28 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/windows-11-ui-registry-hacks/</guid>
+      <description>Some simple registry hacks for alterating the Windows 11 UI.</description>
+    </item>
+    <item>
+      <title>How to compile Iperf3 for Windows using Cygwin</title>
+      <link>https://njit.io/kb/os/windows/how-to-compile-iperf3-for-windows-using-cygwin/</link>
+      <pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/how-to-compile-iperf3-for-windows-using-cygwin/</guid>
+      <description>How to use Cygwin to compile Iperf3 for Windows.</description>
+    </item>
+    <item>
+      <title>Windows Security Events</title>
+      <link>https://njit.io/kb/os/windows/security-events/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/security-events/</guid>
+      <description>Some useful Windows event IDs to know when auditing security logs.</description>
+    </item>
+    <item>
+      <title>Repairing and rebuild WMI repository</title>
+      <link>https://njit.io/kb/os/windows/repairing-and-rebuild-wmi-repository/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/repairing-and-rebuild-wmi-repository/</guid>
+      <description>Many services rely on WMI to work. When it doesn&amp;rsquo;t work you can try to repair/rebuild it.</description>
+    </item>
+    <item>
+      <title>Installing Apache Guacamole in Ubuntu</title>
+      <link>https://njit.io/kb/os/linux/ubuntu/installing-guacamole-in-ubuntu/</link>
+      <pubDate>Fri, 04 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/ubuntu/installing-guacamole-in-ubuntu/</guid>
+      <description>How to install Apache Guacamole on an Ubuntu server</description>
+    </item>
+    <item>
+      <title>Installing .NET 2 &amp; 3.5 feature from Windows installation media</title>
+      <link>https://njit.io/kb/os/windows/installing-net-2-and-3-5-feature-from-installation-media/</link>
+      <pubDate>Sat, 13 Nov 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/installing-net-2-and-3-5-feature-from-installation-media/</guid>
+      <description>In the case of having to install legacy .NET versions but the Windows Feature GUI is throwing an error try this.</description>
+    </item>
+    <item>
+      <title>LXC commands cheat-sheet</title>
+      <link>https://njit.io/kb/containers/lxc/command-cheat-sheet/</link>
+      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/containers/lxc/command-cheat-sheet/</guid>
+      <description>Cheat-sheet for the lxc command used to manage LXC containers</description>
+    </item>
+    <item>
+      <title>Logrotate cheat-sheet</title>
+      <link>https://njit.io/kb/os/linux/logrotate-cheat-sheet/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/logrotate-cheat-sheet/</guid>
+      <description>The following is a cheat-sheet for the logrotate Linux command-line utility</description>
+    </item>
+    <item>
+      <title>Robocopy examples</title>
+      <link>https://njit.io/kb/os/windows/robocopy-examples/</link>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/robocopy-examples/</guid>
+      <description>In the case of having to install legacy .NET versions but the Windows Feature GUI is throwing an error try this.</description>
+    </item>
+    <item>
+      <title>Mounting VMDK files (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMDK file in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>Nutanix AHV host manual shutdown/reboot procedure</title>
+      <link>https://njit.io/kb/hci/nutanix/ahv-host-manual-shutdown-reboot/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/ahv-host-manual-shutdown-reboot/</guid>
+      <description>The procedure for shutting down or rebooting a host in a Nutanix cluster.</description>
+    </item>
+    <item>
+      <title>Renaming Nutanix AHV host and Controller VM</title>
+      <link>https://njit.io/kb/hci/nutanix/renaming-ahv-host-and-cvm/</link>
+      <pubDate>Sun, 25 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/renaming-ahv-host-and-cvm/</guid>
+      <description>A quick guide on how to rename a host and its CVM</description>
+    </item>
+    <item>
+      <title>How to create and destroy a cluster from Nutanix CVM</title>
+      <link>https://njit.io/kb/hci/nutanix/create-and-destroy-cluster-from-cvm/</link>
+      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/create-and-destroy-cluster-from-cvm/</guid>
+      <description>How to create a single-node or multiple-node cluster from inside a Nutanix Controller VM, complete some initial configuration and if you like destroy the cluster once done.</description>
+    </item>
+    <item>
+      <title>Nutanix default credentials</title>
+      <link>https://njit.io/kb/hci/nutanix/default-credentials/</link>
+      <pubDate>Sat, 24 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hci/nutanix/default-credentials/</guid>
+      <description>Default credentials for various Nutanix components</description>
+    </item>
+    <item>
+      <title>Services in systemd</title>
+      <link>https://njit.io/kb/os/linux/services-in-systemd/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/services-in-systemd/</guid>
+      <description>A brief overview of working with service units in systemd.</description>
+    </item>
+    <item>
+      <title>Targets in systemd</title>
+      <link>https://njit.io/kb/os/linux/targets-in-systemd/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/targets-in-systemd/</guid>
+      <description>Similar to System V’s runlevels, systemd has targets. Targets are groups of units that represent different levels of operation.</description>
+    </item>
+    <item>
+      <title>Windows version numbers</title>
+      <link>https://njit.io/kb/os/windows/version-numbers/</link>
+      <pubDate>Sat, 17 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/version-numbers/</guid>
+      <description>If you need a quick way to determine which version of Windows something is running you can do this quick check.</description>
+    </item>
+    <item>
+      <title>Mounting VMFS volume (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</link>
+      <pubDate>Sat, 26 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMFS volume in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>Server remote management default credentials</title>
+      <link>https://njit.io/kb/hardware/servers/remote-management-default-creds/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/hardware/servers/remote-management-default-creds/</guid>
+      <description>Default credentials for IBM, Lenovo, Dell, HP, Fujitsu and Acer server remote management systems</description>
+    </item>
+    <item>
+      <title>Windows Deployment Image Servicing and Management (DISM) cheat-sheet</title>
+      <link>https://njit.io/kb/os/windows/dism-cheat-sheet/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/dism-cheat-sheet/</guid>
+      <description>Use DISM to switch Windows editions or repair a broken Windows deployment.</description>
+    </item>
+    <item>
+      <title>Windows Software Licensing Management Tool (slmgr.vbs) cheat-sheet</title>
+      <link>https://njit.io/kb/os/windows/slmgr-vbs-cheat-sheet/</link>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/slmgr-vbs-cheat-sheet/</guid>
+      <description>Example commands for using slmgr.vbs which is a visual basic script provided in Windows Vista/Server 2008 (and newer) that allows you to configure Windows licensing.</description>
+    </item>
+    <item>
+      <title>Configuring Windows networking via command-line with NETSH</title>
+      <link>https://njit.io/kb/os/windows/network-config-via-netsh/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/network-config-via-netsh/</guid>
+      <description>Some basic commands for modifying the IP of a network interface in Windows.</description>
+    </item>
+    <item>
+      <title>Network routes via Windows command-line</title>
+      <link>https://njit.io/kb/os/windows/network-routes-via-cli/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/network-routes-via-cli/</guid>
+      <description>Some basic commands for managing network routes in Windows.</description>
+    </item>
+    <item>
+      <title>VMware ESXi command-line cheat-sheet</title>
+      <link>https://njit.io/kb/virtualisation/vmware/esxi-cli-cheat-sheet/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/esxi-cli-cheat-sheet/</guid>
+      <description>Cheat-sheet for useful commands you can run via the ESXi shell.</description>
+    </item>
+    <item>
+      <title>WMIC examples</title>
+      <link>https://njit.io/kb/os/windows/wmic-examples/</link>
+      <pubDate>Sun, 20 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/windows/wmic-examples/</guid>
+      <description>Some basic commands for using WMIC to interact with Windows Management Instrumentation.</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://njit.io/about-me/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/about-me/</guid>
+      <description>&lt;div class=&#34;gd-cont&#34;&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&lt;div class=&#34;gd-m12 no-padding&#34;&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&lt;p&gt;Hi, I’m Nathan Jackson and I am an IT Systems Engineer based in Melbourne. During the day I work with Windows domains and Microsoft 365 tenants, at night I experiment with Linux and different programming languages.&lt;/p&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&lt;/div&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&lt;div class=&#34;gd-m6 no-padding&#34;&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&lt;h2&gt;Qualifications&lt;/h2&gt;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&lt;p&gt;Since completing my Bachelor of Information Technology and Systems at Monash University I have gained the following certifications:.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Iperf 3 for Windows</title>
+      <link>https://njit.io/iperf-3-for-windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/iperf-3-for-windows/</guid>
+      <description>Recent Iperf3 binaries for Windows</description>
+    </item>
+    <item>
+      <title>Message Composer</title>
+      <link>https://njit.io/message-composer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/message-composer/</guid>
+      <description>Define common message scripts as JSON to be able to quickly build and populate message templates</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 0: PPPoE</title>
+      <link>https://njit.io/networkenjin/part-0-pppoe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-0-pppoe/</guid>
+      <description>An optional rough guide for configuring PPPoE connections in Linux</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 1: Routing with NFTables</title>
+      <link>https://njit.io/networkenjin/part-1-routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-1-routing/</guid>
+      <description>How to install and configure basic routing in Linux using NFTables</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 2: DNS and DHCP with DNSMasq</title>
+      <link>https://njit.io/networkenjin/part-2-dns-and-dhcp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-2-dns-and-dhcp/</guid>
+      <description>How to install DNSMasq and then configure it to handle DHCP and DNS</description>
+    </item>
+    <item>
+      <title>NJTools.JS</title>
+      <link>https://njit.io/njtools-js/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/njtools-js/</guid>
+      <description>My personal Javascript library I use in my projects.</description>
+    </item>
+    <item>
+      <title>Password Generator</title>
+      <link>https://njit.io/password-generator/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/password-generator/</guid>
+      <description>A simple password generator that tries to balance security with ease to memorise.</description>
+    </item>
+    <item>
+      <title>Structure.CSS</title>
+      <link>https://njit.io/structure-css/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/structure-css/</guid>
+      <description>A simple CSS framework I maintain for my personal projects.</description>
+    </item>
+    <item>
+      <title>Template Processor</title>
+      <link>https://njit.io/template-processor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/template-processor/</guid>
+      <description>A simple tool for processing snippets that use my {:Notation:}.</description>
+    </item>
+    <item>
+      <title>Website attributions</title>
+      <link>https://njit.io/attributions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/attributions/</guid>
+      <description>&lt;p&gt;While the bulk of the HTML, JS &amp;amp; CSS for this site was written by me (&lt;a href=&#34;https://njit.io/license/&#34;&gt;license information can be found here&lt;/a&gt;), I would like to express thanks to the following for their attributions.&lt;/p&gt;&#xA;&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;[Link]&lt;/a&gt; -&#xA;Hugo was used to cobble my code and content together into an easy to manage bundle.&lt;/p&gt;&#xA;&lt;h2 id=&#34;studiopress&#34;&gt;Studiopress&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.studiopress.com/themes/magazine/&#34;&gt;[Link]&lt;/a&gt; -&#xA;My last website was a Wordpress site that used the Magazine Pro theme by Studiopress. I liked it that much that when I decided to switch to Hugo I recreated their design.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Website licenses</title>
+      <link>https://njit.io/license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/license/</guid>
+      <description>&lt;p&gt;Copyright (c) 2024 Nathan Jackson&lt;/p&gt;&#xA;&lt;p&gt;The content of this website is licensed under the &lt;a href=&#34;https://creativecommons.org/licenses/by/4.0/&#34;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The code by Nathan Jackson for this website is licensed under the MIT License detailed below at&#xA;the bottom of this document.&lt;/p&gt;&#xA;&lt;p&gt;This website does contain some HTML, JS and CSS by other authors. An up to date list of the the&#xA;attributions for this code can be found on the &lt;a href=&#34;https://njit.io/attributions/&#34;&gt;Attributions&lt;/a&gt; page.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

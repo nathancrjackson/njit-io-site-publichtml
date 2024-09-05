@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Structure.CSS Demo Site</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/structure.css">
+</head>
+<body>
+	<div class="body-blck">
+		<div class="body-cont" id="header">
+			<h1>Structure.CSS Demo Site</h1>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont">
+			<nav>
+				<ul class="rnav">
+					<li class="active">Demo</li>
+					<li><a href="https://njit.io/about-me/">About Me</a></li>
+					<li class="disabled">Contact</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont">
+			<p>This website is an example of how structure is rendered. Yes I am aware it looks terrible, it has no custom CSS. You will need to bring to BYO jazz for your site. If you have dark mode enabled in your browser you should be noticing that support for that is baked in.</p>
+			<h2>Being basic is the aim of the game</h2>
+			<p>There's not really much to say, it's a simple framework for me to get websites up and running quickly. This demo was more basic but my wife took a cheeky peak at it and made fun of it so now this is what you get.</p>
+			<h3>We also do grids</h3>
+			<p>By default our grid container is the standard 12 wide grid we see in most systems. There is a 10 wide option but as 12 works better for this demo here that is:</p>
+			<div class="gd-cont disable-children-padding">
+				<div class="gd-m6 gd-l4">
+					<p><span class="only-s">12/12 grid span for small</span><span class="only-m">6/12 grid span for medium</span><span class="only-l">4/12 grid span for large</span></p>
+				</div>
+				<div class="gd-m6 gd-l4">
+					<p><span class="only-s">12/12 grid span for small</span><span class="only-m">6/12 grid span for medium</span><span class="only-l">4/12 grid span for large</span></p>
+				</div>
+				<div class="gd-m6 gd-l4">
+					<p><span class="only-s">12/12 grid span for small</span><span class="only-m">6/12 grid span for medium</span><span class="only-l">4/12 grid span for large</span></p>
+				</div>
+			</div>
+
+			<h3>Do you use tables often?</h3>
+			<p>Neither do I, but occasionally I still do. With that in mind here is an example table that collapses down on small screeens:</p>
+			<table class="collapsable">
+				<tr class="hide-s">
+					<th>Name</th>
+					<th>Date</th>
+					<th>Size</th>
+				</tr>
+				<tr>
+					<td class="bold-s">Ubuntu Server.iso</td>
+					<td>0.9GB</td>
+					<td class="hide-s">20XX-04-01 09:41:43</td>
+				</tr>
+				<tr>
+					<td class="bold-s">Windows 10.iso</td>
+					<td>4.6GB</td>
+					<td class="hide-s">20XX-09-01 09:41:39</td>
+				</tr>
+				<tr>
+					<td class="bold-s">ISO to USB.exe</td>
+					<td>1.0MB</td>
+					<td class="hide-s">20XX-10-13 06:17:23</td>
+				</tr>
+			</table>
+
+			<h3>An example of a pre block</h3>
+			<pre>pre {
+	display: block;
+	line-height: 1.25rem;
+	white-space: pre-wrap;
+	margin: 8px;
+	padding: 8px;
+	font-family: $pre-font-stack;
+	color: $darker-color;
+	background-color: $lighter-color;
+}</pre>
+
+			<h3>How about forms?</h3>
+			<p>Ok so forms are a work in progress. Here is an example form for me to test with.</p>
+			<h4>Fake human questions form</h4>
+			<form>
+				<div class="gd-cont">
+					<div class="gd-m6">
+						<label for="firstname-input">First name
+							<input type="text" id="firstname-input" placeholder="Boots">
+						</label>
+					</div>
+					<div class="gd-m6">
+						<label for="lastname-input">Last name
+							<input type="text" id="lastname-input" placeholder="Snootington">
+						</label>
+					</div>
+				</div>
+				<div class="gd-cont">
+					<div class="gd-m3">
+						<label>Pick an option
+							<select>
+								<option value="1">First option</option>
+								<option value="2">Second option</option>
+								<option value="3">Third option</option>
+								<option value="4">Other</option>
+							</select>
+						</label>
+					</div>
+					<div class="gd-m3">
+						<label>Favourite colour
+							<input type="color" name="fav-color">
+						</label>
+					</div>
+					<div class="gd-m6">
+						<legend>Preference</legend>
+						<input type="radio" name="radio-input" value="Left" id="radio-left" required><label for="radio-left">Left</label>
+						<input type="radio" name="radio-input" value="Middle" id="radio-middle"><label for="radio-middle">Middle</label>
+						<input type="radio" name="radio-input" value="Right" id="radio-right"><label for="radio-right">Right</label>
+					</div>
+				</div>
+				<div class="gd-cont">
+					<div class="gd-s12">
+						<label>Tell us something about yourself
+						<textarea placeholder=""></textarea>
+						</label>
+					</div>
+				</div>
+				<div class="gd-cont">
+					<div class="gd-s12">
+						<input id="checkbox-tcs-input" type="checkbox"><label for="checkbox-tcs-input">I agree to terms and conditions</label><br>
+						<input id="checkbox-news-input" type="checkbox"><label for="checkbox-news-input">I would like to sign up to your newsletter</label>
+					</div>
+				</div>
+				<div class="gd-cont">
+					<div class="gd-s12">
+						<button onclick="console.log('Cheeky submit')">Submit</button>
+						<input type="button" onclick="console.log('Cheeky cancel')" value="Cancel">
+						<a href="#" class="button" onclick="console.log('Cheeky reset')">Reset</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

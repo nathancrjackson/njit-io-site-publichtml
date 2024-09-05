@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NJTools.JS JS, DOM & Req example</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.njit.io/web/structure-css/1_x/latest/structure.css">
+	<script src="../src/js/njtools-core.js"></script>
+	<script src="common.js"></script>
+	<script defer src="../src/js/njtools-extensions.js"></script>
+	<script defer src="njt_js-dom-req.js"></script>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="body-blck">
+		<div class="body-cont" id="header">
+			<h1>NJTools.JS Examples</h1>
+		</div>
+	</div>
+	<!div class="body-blck">
+		<div class="body-cont">
+			<nav>
+				<ul class="rnav">
+					<li class="active">njt.js/dom/req</li>
+					<li><a href="njt_event.html">njt.event</a></li>
+					<li><a href="njt_element.html">njt.element</a></li>
+					<li><a href="njt_snip.html">njt.snip</a></li>
+					<li><a href="njt_modal.html">njt.modal</a></li>
+					<li><a href="njt_formbuilder.html">njt.formbuilder</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont" id="main-container">
+			<div class="gd-cont">
+				<div class="gd-s12">
+				<h2>NJT.JS, NJT.DOM & NJT.Req</h2>
+				<h3>Description</h3>
+				<p>The JS, Dom & Req modules are pretty straight forward</p>
+				<ul>
+					<li>JS has some simple helper functions</li>
+					<li>DOM has all the functions you need to select elements from the DOM</li>
+					<li>Req saves you a few lines when you need to make GET or POST web requests</li>
+				</ul>
+				<p>This example uses Req to get a JSON file, JS to simplify validating it and DOM to get then update an element based on an attribute to create the following list:</p>
+				<div class="gd-cont">
+					<div class="gd-s12 disable-padding" outputtarget="This Element">
+					<pre>Resulting HTML will go here</pre>
+					</div>
+				</div>
+				<h3>Console</h3>
+				<pre id="jsconsole">Javascripts messages will go here</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div modal-wrapper="Lorem-modal" style="display:none;">
+		<h3>Modal with Lorem Ipsum</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cum sociis natoque penatibus et magnis dis parturient. Sed ullamcorper morbi tincidunt ornare. Morbi blandit cursus risus at ultrices mi tempus imperdiet nulla. Maecenas ultricies mi eget mauris. Nulla porttitor massa id neque aliquam vestibulum morbi blandit. Nisl vel pretium lectus quam. Vulputate ut pharetra sit amet aliquam id diam. Sagittis aliquam malesuada bibendum arcu. Amet nulla facilisi morbi tempus. Aliquet nibh praesent tristique magna sit. Leo duis ut diam quam nulla porttitor massa id. Rutrum quisque non tellus orci ac auctor augue mauris. Viverra suspendisse potenti nullam ac.</p>
+		<p>Volutpat consequat mauris nunc congue. Suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur. Gravida rutrum quisque non tellus orci ac auctor augue. Lectus sit amet est placerat in egestas erat imperdiet. Enim ut sem viverra aliquet eget. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Vitae et leo duis ut diam quam nulla porttitor massa. Morbi blandit cursus risus at ultrices mi tempus imperdiet nulla. Luctus venenatis lectus magna fringilla. Neque egestas congue quisque egestas diam in arcu. Mi ipsum faucibus vitae aliquet nec ullamcorper sit amet. Magna etiam tempor orci eu lobortis elementum nibh tellus. Erat nam at lectus urna duis. Vitae et leo duis ut diam quam. Vitae et leo duis ut. Lorem sed risus ultricies tristique. Odio ut sem nulla pharetra diam. Donec adipiscing tristique risus nec feugiat in fermentum posuere.</p>
+		<p>Turpis cursus in hac habitasse platea dictumst quisque. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque. Morbi tristique senectus et netus et. Sit amet tellus cras adipiscing enim eu turpis egestas. Amet mattis vulputate enim nulla aliquet porttitor. Massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Turpis nunc eget lorem dolor sed viverra. Quam nulla porttitor massa id neque. Felis eget velit aliquet sagittis id consectetur purus ut. Fermentum posuere urna nec tincidunt praesent semper feugiat. Placerat duis ultricies lacus sed turpis tincidunt id aliquet risus.</p>
+		<button onClick="window.njt.event.eventHandler(event)" njteventclick="closeloremipsum">Close</button>
+	</div>
+	<div modal-wrapper="Customised-modal" modal-open="customopen" modal-close="customclose" style="display:none;">
+		<h3>Customised Modal</h3>
+		<p>You must tick the following checkbox for this modal to close.</p>
+		<p><input id="checkbox-input" type="checkbox"><label for="checkbox-input">This is an example of form validation</label></p>
+		<button id="button-in-modal" onClick="window.njt.event.eventHandler(event)" njteventclick="tryclosecustomised">Try Close</button>
+	</div>
+</body>
+</html>

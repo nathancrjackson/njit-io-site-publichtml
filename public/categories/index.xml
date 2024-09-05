@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on NJIT.io</title>
+    <link>https://njit.io/categories/</link>
+    <description>Recent content in Categories on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 09 Jul 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Knowledge-Base</title>
+      <link>https://njit.io/categories/knowledge-base/</link>
+      <pubDate>Sun, 09 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/categories/knowledge-base/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Projects</title>
+      <link>https://njit.io/categories/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/categories/projects/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tools</title>
+      <link>https://njit.io/categories/tools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/categories/tools/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on NJIT.io</title>
+    <link>https://njit.io/tags/linux/</link>
+    <description>Recent content in Linux on NJIT.io</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://njit.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing Apache Guacamole in Ubuntu</title>
+      <link>https://njit.io/kb/os/linux/ubuntu/installing-guacamole-in-ubuntu/</link>
+      <pubDate>Fri, 04 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/ubuntu/installing-guacamole-in-ubuntu/</guid>
+      <description>How to install Apache Guacamole on an Ubuntu server</description>
+    </item>
+    <item>
+      <title>Logrotate cheat-sheet</title>
+      <link>https://njit.io/kb/os/linux/logrotate-cheat-sheet/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/logrotate-cheat-sheet/</guid>
+      <description>The following is a cheat-sheet for the logrotate Linux command-line utility</description>
+    </item>
+    <item>
+      <title>Mounting VMDK files (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmdk-files-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMDK file in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>Services in systemd</title>
+      <link>https://njit.io/kb/os/linux/services-in-systemd/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/services-in-systemd/</guid>
+      <description>A brief overview of working with service units in systemd.</description>
+    </item>
+    <item>
+      <title>Targets in systemd</title>
+      <link>https://njit.io/kb/os/linux/targets-in-systemd/</link>
+      <pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/os/linux/targets-in-systemd/</guid>
+      <description>Similar to System V’s runlevels, systemd has targets. Targets are groups of units that represent different levels of operation.</description>
+    </item>
+    <item>
+      <title>Mounting VMFS volume (read-only) in Ubuntu</title>
+      <link>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</link>
+      <pubDate>Sat, 26 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/kb/virtualisation/vmware/mounting-vmfs-volume-read-only-in-ubuntu/</guid>
+      <description>How to mount a VMFS volume in an Ubuntu shell.</description>
+    </item>
+    <item>
+      <title>NetworkEnjin</title>
+      <link>https://njit.io/networkenjin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/</guid>
+      <description>I am using Linux as my router and have written instructions so that you can too.</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 0: PPPoE</title>
+      <link>https://njit.io/networkenjin/part-0-pppoe/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-0-pppoe/</guid>
+      <description>An optional rough guide for configuring PPPoE connections in Linux</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 1: Routing with NFTables</title>
+      <link>https://njit.io/networkenjin/part-1-routing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-1-routing/</guid>
+      <description>How to install and configure basic routing in Linux using NFTables</description>
+    </item>
+    <item>
+      <title>NetworkEnjin – Part 2: DNS and DHCP with DNSMasq</title>
+      <link>https://njit.io/networkenjin/part-2-dns-and-dhcp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://njit.io/networkenjin/part-2-dns-and-dhcp/</guid>
+      <description>How to install DNSMasq and then configure it to handle DHCP and DNS</description>
+    </item>
+  </channel>
+</rss>

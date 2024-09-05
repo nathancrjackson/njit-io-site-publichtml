@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>NJTools.JS Event example</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.njit.io/web/structure-css/1_x/latest/structure.css">
+	<script src="../src/js/njtools-core.js"></script>
+	<script src="common.js"></script>
+	<script defer src="../src/js/njtools-extensions.js"></script>
+	<script defer src="njt_event.js"></script>
+	<script>
+	</script>
+</head>
+<body>
+	<div class="body-blck">
+		<div class="body-cont" id="header">
+			<h1>NJTools.JS Examples</h1>
+		</div>
+	</div>
+	<!div class="body-blck">
+		<div class="body-cont">
+			<nav>
+				<ul class="rnav">
+					<li><a href="njt_js-dom-req.html">njt.js/dom/req</a></li>
+					<li class="active">njt.event</li>
+					<li><a href="njt_element.html">njt.element</a></li>
+					<li><a href="njt_snip.html">njt.snip</a></li>
+					<li><a href="njt_modal.html">njt.modal</a></li>
+					<li><a href="njt_formbuilder.html">njt.formbuilder</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="body-blck">
+		<div class="body-cont" id="main-container">
+			<div class="gd-cont">
+				<div class="gd-s12">
+				<h2>NJT.Event</h2>
+				<h3>Description</h3>
+				<p>The events module has two functions.</p>
+				<p>Primarily, it handles function queues for events. Events can either be natural Javascript ones, or a synthetic event that you create and trigger for whatever reason.</p>
+				<p>This demo has two key events:</p>
+				<ol>
+					<li>The natural event when the page has loaded which creates a timer.</li>
+					<li>A synthetic event that is triggered by the timer.</li>
+				</ol>
+				<p>Secondly, it has a function map and event handler to make inline HTML events easier if you want that. As an example check out the Boop button:</p>
+				<button onclick="window.njt.event.eventHandler(event)" njteventclick="boop">Boop button</button>
+				<h3>Console</h3>
+				<pre id="jsconsole">Javascripts messages will go here</pre>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

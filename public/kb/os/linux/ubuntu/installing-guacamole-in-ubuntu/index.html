@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+	<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Installing Apache Guacamole in Ubuntu | NJIT.io</title>
+<meta name="description" content="How to install Apache Guacamole on an Ubuntu server">
+<meta name="author" content="Nathan Jackson" />
+
+<meta property="og:url" content="https://njit.io/kb/os/linux/ubuntu/installing-guacamole-in-ubuntu/">
+  <meta property="og:site_name" content="NJIT.io">
+  <meta property="og:title" content="Installing Apache Guacamole in Ubuntu">
+  <meta property="og:description" content="How to install Apache Guacamole on an Ubuntu server">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="kb">
+    <meta property="article:published_time" content="2022-02-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-02-04T00:00:00+00:00">
+    <meta property="article:tag" content="Os">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Ubuntu">
+    <meta property="article:tag" content="Apache Guacamole">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Installing Apache Guacamole in Ubuntu">
+  <meta name="twitter:description" content="How to install Apache Guacamole on an Ubuntu server">
+
+
+  <meta itemprop="name" content="Installing Apache Guacamole in Ubuntu">
+  <meta itemprop="description" content="How to install Apache Guacamole on an Ubuntu server">
+  <meta itemprop="datePublished" content="2022-02-04T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-02-04T00:00:00+00:00">
+  <meta itemprop="wordCount" content="865">
+  <meta itemprop="keywords" content="Os,Linux,Ubuntu,Apache Guacamole">
+
+
+
+<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+
+
+
+
+<script src="/js/njtools-core.min.d66c683e82dea546f573082174c16a45e4b048368c6926a0560075ebaf57fdb5.js"></script>
+
+<script src="/js/njtools-extensions.min.c5f88e86686dd1dd8b2e5502808bc834de9924434d6797735633d81f0579329a.js" async></script>
+
+<script src="/js/site.min.771b87541caf831e155af94af7901abc37e18f1ef3ef13bc973eadf7d31625d2.js" async></script>
+
+<script>
+    njt.log('Created CodeProcessed Queue');
+    njt.event.createQueue('codeprocessed', window, 'codeprocessed');
+</script>
+
+<style>
+     
+    #njitio-logo-lightmode { display: inline; }
+    #njitio-logo-darkmode { display: none; }
+
+    @media (prefers-color-scheme: dark) {
+        #njitio-logo-lightmode { display: none; }
+        #njitio-logo-darkmode { display: inline; }
+    }
+</style>
+
+	</head>
+	<body>
+		<header>
+
+<div id="nav-body-blck" class="body-blck">
+	<div class="body-cont">
+		<div class="gd-cont">
+			<div class="gd-m12">
+			<nav>
+				<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle" />
+				<label id="main-nav-toggle-label" for="main-nav-toggle" class="main-nav-toggle-label"><span id="nav-menu-icon">&#9776;</span> Menu</label>
+				<ul class="rnav main-nav-root">
+
+			<li class="main-nav-item">
+			<a href="/">Home</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/about-me/">About me</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle1" />
+			<label class="main-nav-label" for="main-nav-toggle1">Projects<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/structure-css/">Structure.CSS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/njtools-js/">NJTools.JS</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/networkenjin/">NetworkEnjin</a>
+			</li>
+			</ul>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle2" />
+			<label class="main-nav-label" for="main-nav-toggle2">Tools<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="/password-generator/">Password Generator</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/template-processor/">Template Processor</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/message-composer/">Message Composer</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="/iperf-3-for-windows/">Iperf 3 for Windows</a>
+			</li>
+			</ul>
+			</li>
+			<li class="main-nav-item">
+			<a aria-current="true" class="main-nav-ancestor" href="/kb/">Knowledge-base</a>
+			</li>
+
+			<li class="main-nav-parent">                            
+			<input type="checkbox" class="main-nav-toggle" id="main-nav-toggle3" />
+			<label class="main-nav-label" for="main-nav-toggle3">External Links<span class="main-nav-level" aria-hidden="true"> +</span></label>
+			<ul class="main-nav-child">
+
+			<li class="main-nav-item">
+			<a href="https://learn.microsoft.com/en-us/compliance/anz/e8-overview">Microsoft Docs on ACSC Essential Eight</a>
+			</li>
+			<li class="main-nav-item">
+			<a href="https://desktop.gov.au/blueprint/overview">AU Government’s Protected Utility blueprint</a>
+			</li>
+			</ul>
+			</li>
+				</ul>
+			</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="header-body-blck" class="body-blck">
+    <div id="header-body-cont" class="body-cont content-container">
+        <div class="gd-cont">
+            <div class="gd-s12">
+                <div id="header-contents">
+                    <a href="/" id="header-link" rel="home">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		</header>
+		<main>
+
+<div class="body-blck">
+	<div class="body-cont content-container">
+		<div class="gd-cont" id="content-grid">
+
+
+
+<div class="gd-s12">
+	<h1 id="page-heading">Installing Apache Guacamole in Ubuntu</h1>
+</div>
+<div id="page-headingbuttons" class="hide"></div>
+
+
+<div id="notificationdiv" class="gd-s12">
+	<div class="infonotification">
+		<h4 class="notificationheading">This site requires Javascript</h4>
+		<p class="notificationtext">You are seeing this if you have Javascript disabled.</p>
+	</div>
+</div>
+
+			<div class="gd-s12">
+<h2 id="considerations-before-you-begin">Considerations before you begin</h2>
+<p>This guide has only been tested working on AMD64 architecture. I have had issues trying to do this on ARM based devices as particular packages have been missing from the software repos for that architecture. I may look into work-arounds in the future or the issue may resolve itself over time.</p>
+<p>Also Guacamole relies on Tomcat which may complicate things if you are already running:</p>
+<ul>
+<li>Tomcat for another webapp</li>
+<li>A different web server that uses 8080</li>
+</ul>
+<p>Personally I run Guacamole in its own LXD container.</p>
+<h2 id="basic-setup">Basic Setup</h2>
+<p>For convenience start by switching to your root user</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>sudo su
+</span></span></code></pre></div><p>Because we need to install packages it is recommended that you update your repos first</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt update
+</span></span></code></pre></div><p>In this I use nano for file editing. If you’re doing this in a fresh container and don’t want to use vi you’ll probably want to run</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install nano -y
+</span></span></code></pre></div><h2 id="compiling-and-configuring-guacamole-server">Compiling and configuring Guacamole Server</h2>
+<p>As we are going to be compiling the Guacamole server daemon from source we need to install the prerequisites</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install build-essential wget libcairo2-dev libjpeg-turbo8-dev libpng-dev libtool-bin libossp-uuid-dev libvncserver-dev freerdp2-dev libssh2-1-dev libtelnet-dev libwebsockets-dev libpulse-dev libvorbis-dev libwebp-dev libssl-dev libpango1.0-dev libswscale-dev libavcodec-dev libavutil-dev libavformat-dev -y
+</span></span></code></pre></div><p>For reference here is the Guacamole page that I got these from: <a href="https://guacamole.apache.org/doc/gug/installing-guacamole.html">https://guacamole.apache.org/doc/gug/installing-guacamole.html</a></p>
+<p>You may want to reference it if:</p>
+<ul>
+<li>You want to be be more selective because you only need certain features</li>
+<li>If you want to try to adapt this guide for a RHEL based distro and need their package names</li>
+<li>You’re using this in a future where I’ve forgotten about this article and have not updated packages as they change over time</li>
+</ul>
+<p>Change to your working directory that you want to download and extract into</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cd &#34;{:WorkingDirectory:}&#34;
+</span></span></code></pre></div><p>Download the Guacamole server source</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wget https://{:ApacheCDN:}/guacamole/{:GuacamoleVersion:}/source/guacamole-server-{:GuacamoleVersion:}.tar.gz -O  &#34;{:WorkingDirectory:}/guacamole-server-{:GuacamoleVersion:}.tar.gz&#34;
+</span></span></code></pre></div><p>Extract the source</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>tar -xvf guacamole-server-{:GuacamoleVersion:}.tar.gz
+</span></span></code></pre></div><p>Change into the extracted directory</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cd guacamole-server-{:GuacamoleVersion:}
+</span></span></code></pre></div><p>Configure, make, install and link libraries</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./configure --with-systemd-dir=/etc/systemd/system/
+</span></span></code></pre></div><p>With Guacamole 1.4.0 on Ubuntu 22.04 I had an issue with my build failing because Guacamole was using depreciated functions. To get around “all warnings being treated as errors” during make run this instead</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>./configure --with-systemd-dir=/etc/systemd/system/ CFLAGS=-Wno-error
+</span></span></code></pre></div><p>Now make, install and link libraries</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>make install
+</span></span><span style="display:flex;"><span>ldconfig
+</span></span></code></pre></div><p>Before we start the service we need to create our Guacamole config folder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>mkdir -p /etc/guacamole
+</span></span></code></pre></div><p>Then create our Guacamole daemon config file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>nano /etc/guacamole/guacd.conf
+</span></span></code></pre></div><p>Populate the file with the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>[server]
+</span></span><span style="display:flex;"><span>bind_host = 127.0.0.1
+</span></span><span style="display:flex;"><span>bind_port = 4822
+</span></span></code></pre></div><p>There are not many options but for reference if you would like to know them they can be found here: <a href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#configuring-guacd">https://guacamole.apache.org/doc/gug/configuring-guacamole.html#configuring-guacd</a></p>
+<p>Reload services then enable and start the Guacamole Server</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl daemon-reload
+</span></span><span style="display:flex;"><span>systemctl enable guacd
+</span></span><span style="display:flex;"><span>systemctl start guacd
+</span></span></code></pre></div><p>That is it for the server installation, you can check it is working by running</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl status guacd
+</span></span></code></pre></div><h2 id="configuring-guacamole-client">Configuring Guacamole Client</h2>
+<p>Apache provide the Guacamole Client webapp pre-compiled so we only need to download the Tomcat platform that hosts it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>apt install tomcat9 tomcat9-admin tomcat9-common tomcat9-user -y
+</span></span></code></pre></div><p>Then download the pre-compiled webapp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>wget https://{:ApacheCDN:}/guacamole/{:GuacamoleVersion:}/binary/guacamole-{:GuacamoleVersion:}.war -O  &#34;{:WorkingDirectory:}/guacamole-{:GuacamoleVersion:}.war&#34;
+</span></span></code></pre></div><p>And copy it into Tomcat’s webapp folder</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>cp &#34;{:WorkingDirectory:}/guacamole-{:GuacamoleVersion:}.war&#34; /var/lib/tomcat9/webapps/guacamole.war
+</span></span></code></pre></div><p>Then we can create our main Guacamole config file for the webapp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>nano /etc/guacamole/guacamole.properties
+</span></span></code></pre></div><p>Populate the file with the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>#Guacamole server daemon details
+</span></span><span style="display:flex;"><span>guacd-hostname: 127.0.0.1
+</span></span><span style="display:flex;"><span>guacd-port: 4822
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#Guacamole client webapp configuration
+</span></span><span style="display:flex;"><span>auth-provider: net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider
+</span></span><span style="display:flex;"><span>basic-user-mapping: /etc/guacamole/user-mapping.xml
+</span></span></code></pre></div><p>Next we will need to create the basic user mapping file</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>nano /etc/guacamole/user-mapping.xml
+</span></span></code></pre></div><p>Here is an example which has a user that connects to RDP:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>&lt;user-mapping&gt;
+</span></span><span style="display:flex;"><span>  &lt;authorize
+</span></span><span style="display:flex;"><span>    username=&#34;{:GuacUsername:}&#34;
+</span></span><span style="display:flex;"><span>    password=&#34;{:GuacPWDMD5:}&#34;
+</span></span><span style="display:flex;"><span>    encoding=&#34;md5&#34;&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;connection name=&#34;{:ConnectionName:}&#34;&gt;
+</span></span><span style="display:flex;"><span>      &lt;protocol&gt;rdp&lt;/protocol&gt;
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;hostname&#34;&gt;{:RDPHostname:}&lt;/param&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;domain&#34;&gt;{:RDPUserDomain:}&lt;/param&gt;
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;username&#34;&gt;{:RDPUsername:}&lt;/param&gt;
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;password&#34;&gt;{:RDPUserPassword:}&lt;/param&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;ignore-cert&#34;&gt;true&lt;/param&gt;
+</span></span><span style="display:flex;"><span>      &lt;param name=&#34;resize-method&#34;&gt;display-update&lt;/param&gt;
+</span></span><span style="display:flex;"><span>    &lt;/connection&gt;
+</span></span><span style="display:flex;"><span>  &lt;/authorize&gt;
+</span></span><span style="display:flex;"><span>&lt;/user-mapping&gt;
+</span></span></code></pre></div><p>To learn more about the options available please read: <a href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html">https://guacamole.apache.org/doc/gug/configuring-guacamole.html</a></p>
+<p>I would recommend not skipping over <a href="https://guacamole.apache.org/doc/gug/configuring-guacamole.html#parameter-tokens">the section on parameter tokens</a> as they are useful for doing things like passing the Guacamole user’s password into the RDP connection’s password.</p>
+<p>As you may have noticed the Guacamole user password is an MD5 hash. If you don’t want to use my website to do the hash for you (I assume because you can’t be bothered inspecting the code to make sure it’s safe) you can also run the following command to generate the hash for you (provided that you have openssl installed).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>echo -n &#34;{:GuacPWD:}&#34; | openssl md5
+</span></span></code></pre></div><p>Please note that this will instead save the password into your command history unless you run something like this afterwards: kill -9 $$</p>
+<p>With all that complete all you need to do now is restart the Tomcat service and you are good to go</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl restart tomcat9
+</span></span></code></pre></div><p>You should now be able to access and use Guacamole via: http://{:GuacamoleServerIP:}:8080/guacamole/</p>
+<h2 id="nginx-reverse-proxy">NGINX reverse proxy</h2>
+<p>If you have NGINX configured as a reverse proxy you can add the following location to your server block to reverse proxy Guacamole (I’m going to assume that you know what I mean by this):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>location /guacamole/ {
+</span></span><span style="display:flex;"><span>    proxy_pass http://{:GuacamoleServerIP:}:8080/guacamole/;
+</span></span><span style="display:flex;"><span>    proxy_buffering off;
+</span></span><span style="display:flex;"><span>    proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>    proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>    proxy_set_header Connection $http_connection;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>If you would like to rename the location alias you can do so with the following changes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>location /{:LocationAlias:}/ {
+</span></span><span style="display:flex;"><span>    proxy_pass http://{:GuacamoleServerIP:}:8080/guacamole/;
+</span></span><span style="display:flex;"><span>    proxy_buffering off;
+</span></span><span style="display:flex;"><span>    proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>    proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>    proxy_set_header Connection $http_connection;
+</span></span><span style="display:flex;"><span>    proxy_cookie_path /guacamole/ /{:LocationAlias:}/;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then restart your NGINX service and you are good to go</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>systemctl restart nginx
+</span></span></code></pre></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="body-blck">
+  <div class="body-cont">
+    <div class="gd-cont">
+  <div class="gd-s12">
+    <div><p>Tags:&nbsp;<a href="/tags/os/" class="no-caps">#Os</a>&nbsp;<a href="/tags/linux/" class="no-caps">#Linux</a>&nbsp;<a href="/tags/ubuntu/" class="no-caps">#Ubuntu</a>&nbsp;<a href="/tags/apache-guacamole/" class="no-caps">#Apache Guacamole</a>&nbsp;</p></div>
+  </div>
+
+    </div>
+  </div>
+</div>
+
+
+<script>
+  njt.dom.getElementById('notificationdiv').style.display = "none";
+</script>
+  
+    
+    <script defer src="/js/password-generator.min.c7ab85546ec8590e48f60b264ec607d421406187378fae980cbed82d68f73bd6.js"></script>
+    
+  
+    
+    <script defer src="/js/md5.min.34905744359980cc7a715de8f541ac21573c7cc239c5b47b954d8540317220c7.js"></script>
+    
+  
+
+
+
+<script>
+njt.event.queue['codeprocessed'].push(function(){
+	let password = app.snips.getPasswordForPosts();
+	app.snips.functions["md5"] = md5;
+
+	app.snips.addVariable("workingdirectory", { "i":1, "h":"Working directory", "p":"/tmp", "c":"gd-m4" });
+	app.snips.addVariable("guacamoleversion", { "i":1, "h":"Guacamole version", "p":"1.4.0", "c":"gd-m4" });
+	app.snips.addVariable("apachecdn", { "i":1, "h":"Apache CDN site", "p":"downloads.apache.org", "c":"gd-m4" });
+
+	app.snips.addVariable("guacusername", { "i":1, "h":"Guacamole username", "p":"ExampleUsername", "c":"gd-m6" });
+	app.snips.addVariable("guacpwd", { "i":1, "h":"Guacamole password", "p":password, "c":"gd-m6" });
+	app.snips.addVariable("guacpwdmd5", { "i":0, s:"guacpwd", f:["md5"] });
+
+	app.snips.addVariable("connectionname", { "i":1, "h":"RDP connection name", "p":"Example Connection", "c":"gd-m12" });
+	app.snips.addVariable("rdphostname", { "i":1, "h":"RDP hostname", "p":"rdsh.example.com", "c":"gd-m6" });
+	app.snips.addVariable("rdpuserdomain", { "i":1, "h":"RDP user domain", "p":"example.local", "c":"gd-m6" });
+	app.snips.addVariable("rdpusername", { "i":1, "h":"RDP username", "p":"${GUAC_USERNAME}", "c":"gd-m6" });
+	app.snips.addVariable("rdpuserpassword", { "i":1, "h":"RDP password", "p":"${GUAC_PASSWORD}", "c":"gd-m6" });
+
+	app.snips.addVariable("guacamoleserverip", { "i":1, "h":"Guacamole server IP", "p":"127.0.0.1", "c":"gd-m6" });
+	app.snips.addVariable("locationalias", { "i":1, "h":"Guacamole alias", "p":"guac", "c":"gd-m6" });
+});
+</script>
+
+
+		</main>
+		<footer>
+<div id="footer-body-blck" class="body-blck">
+    <div id="footer-body-cont" class="body-cont">
+        <div class="gd-cont">
+            <div class="gd-s12 align-center" id="footer-contents">
+                <p>Copyright © 2024<br><a href="/license/" class="light-text">License</a> & <a href="/attributions/" class="light-text">Attributions</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		</footer>
+	</body>
+</html>
