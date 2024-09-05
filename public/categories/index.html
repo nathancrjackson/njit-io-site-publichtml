@@ -27,7 +27,7 @@
 
 
 
-<link rel="stylesheet" href="/css/style.min.5d235ac77916f2633549bc93f2d3b3ebc8a18526120c24aa1b5eea69d774319c.css" integrity="sha256-XSNax3kW8mM1SbyT8tOz68ihhSYSDCSqG17qadd0MZw=" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/style.min.3a314833c7d24c24661d97fb26bf25b5050c4336c4a972a536c0d1132260b101.css" integrity="sha256-OjFIM8fSTCRmHZf7Jr8ltQUMQzbEqXKlNsDREyJgsQE=" crossorigin="anonymous">
 
 
 
@@ -45,12 +45,11 @@
 
 <style>
      
-    #njitio-logo-lightmode { display: inline; }
-    #njitio-logo-darkmode { display: none; }
-
     @media (prefers-color-scheme: dark) {
-        #njitio-logo-lightmode { display: none; }
-        #njitio-logo-darkmode { display: inline; }
+        #njitio-logo {
+            -webkit-filter: invert(1);
+            filter: invert(1);
+        }
     }
 </style>
 
@@ -139,8 +138,7 @@
             <div class="gd-s12">
                 <div id="header-contents">
                     <a href="/" id="header-link" rel="home">
-                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-lightmode.png" class="njitio-logo" id="njitio-logo-lightmode" alt="NJIT.io" decoding="async" fetchpriority="high">
-                        <img width="220" height="48" src="/images/NJIT-logo-220x48-1-darkmode.png" class="njitio-logo" id="njitio-logo-darkmode" alt="NJIT.io" decoding="async" fetchpriority="high">
+                        <img width="220" height="48" src="/images/NJIT-logo-330x72-1.png" id="njitio-logo" alt="NJIT.io" decoding="async" fetchpriority="high">
                     </a>
                 </div>
             </div>
@@ -185,7 +183,7 @@
 			<div id="secondary-cont">
 				<div class="gd-cont">
 <div class="gd-m12">
-	<img src="/images/Nathan-portrait-500x500-1.jpg" id="nathan-portrait" alt="Professional photo of Nathan Jackson" decoding="async" fetchpriority="high">
+	<img src="/images/Nathan-portrait-500x500-1.jpg" id="nathan-portrait" alt="Professional photo of Nathan Jackson" decoding="async" fetchpriority="high" width="275" height="275">
 </div>
 <div class="gd-m12">
 	<div id="social-media-buttons">
